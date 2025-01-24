@@ -5,16 +5,16 @@ import catchAsync from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
 
 const createBikeItem = catchAsync(async (req: Request, res: Response) => {
-    const bikeData = req.body;
-    console.log(bikeData);
-    const result = await bikeServices.createBikeItem(bikeData);
-    sendResponse(res, {
-      data: result,
-      message: 'Bike Created successfully',
-      statusCode: 200,
-      success: true,
-      meta:null
-    })
+  const bikeData = req.body;
+  console.log(bikeData);
+  const result = await bikeServices.createBikeItem(bikeData);
+  sendResponse(res, {
+    data: result,
+    message: 'Bike Created successfully',
+    statusCode: 200,
+    success: true,
+    meta: null
+  })
 })
 
 
@@ -36,30 +36,25 @@ const getAllBikes = catchAsync(async (req: Request, res: Response) => {
     message: "All Bikes Retrieved successfully",
     statusCode: 200,
     success: true,
-    meta:null
+    meta: null
   })
 })
 
 
-const getSingleBike = async (req: Request, res: Response) => {
-  try {
+const getSingleBike = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const result = await bikeServices.getSingleBike(id);
-    res.status(200).json({
-      status: true,
-      message: 'Bike Retrieved successfully',
+    sendResponse(res, {
       data: result,
-    });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: err.message || 'Something went wrong',
-      error: err,
-      stack: config.node_env == 'development' ? err.stack : undefined,
-    });
-  }
-};
+      message: 'Bike Retrieved successfully',
+      statusCode: 200,
+      success: true,
+      meta: null
+    })
+    
+})
+
+
 const updateBike = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
