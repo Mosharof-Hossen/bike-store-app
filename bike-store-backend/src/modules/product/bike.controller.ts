@@ -1,14 +1,13 @@
 import { Request, Response } from 'express';
 import { bikeServices } from './bike.service';
-import bikeValidationSchema from './bike.zod.validation';
 import config from '../../config';
 import catchAsync from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
 
 const createBikeItem = catchAsync(async (req: Request, res: Response) => {
     const bikeData = req.body;
-    const zodParseData = bikeValidationSchema.parse(bikeData);
-    const result = await bikeServices.createBikeItem(zodParseData);
+    console.log(bikeData);
+    const result = await bikeServices.createBikeItem(bikeData);
     sendResponse(res, {
       data: result,
       message: 'Bike Created successfully',
