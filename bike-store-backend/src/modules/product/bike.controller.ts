@@ -19,18 +19,7 @@ const createBikeItem = catchAsync(async (req: Request, res: Response) => {
 
 
 const getAllBikes = catchAsync(async (req: Request, res: Response) => {
-  const queryData = req.query.searchTerm as string | undefined;
-  let query = {};
-  if (queryData) {
-    query = {
-      $or: [
-        { name: { $regex: queryData, $options: 'i' } },
-        { brand: { $regex: queryData, $options: 'i' } },
-        { category: { $regex: queryData, $options: 'i' } },
-      ],
-    };
-  }
-  const result = await bikeServices.getAllBikes(query);
+  const result = await bikeServices.getAllBikes(req.query);
   sendResponse(res, {
     data: result,
     message: "All Bikes Retrieved successfully",
@@ -42,16 +31,16 @@ const getAllBikes = catchAsync(async (req: Request, res: Response) => {
 
 
 const getSingleBike = catchAsync(async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const result = await bikeServices.getSingleBike(id);
-    sendResponse(res, {
-      data: result,
-      message: 'Bike Retrieved successfully',
-      statusCode: 200,
-      success: true,
-      meta: null
-    })
-    
+  const { id } = req.params;
+  const result = await bikeServices.getSingleBike(id);
+  sendResponse(res, {
+    data: result,
+    message: 'Bike Retrieved successfully',
+    statusCode: 200,
+    success: true,
+    meta: null
+  })
+
 })
 
 

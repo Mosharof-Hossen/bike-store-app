@@ -8,6 +8,8 @@ const bikeValidationSchema = z.object({
     brand: z
       .string()
       .nonempty({ message: 'Brand is required and cannot be empty' }),
+    model: z.string({ required_error: "Model is required" }),
+    image: z.string({ required_error: "Image is required" }),
     price: z
       .number()
       .int({ message: 'Price must be an integer' })
