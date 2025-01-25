@@ -5,4 +5,5 @@ export type TOrder = {
   product: Types.ObjectId;
   quantity: number;
   totalPrice: number;
+  status?: "Pending" | "Processing" | "Shipped" | "Delivered";
 };

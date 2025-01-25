@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
-import config from '../../config';
 import { bikeServices } from '../product/bike.service';
 import { orderServices } from './order.service';
 import catchAsync from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
 import AppError from '../../errors/AppError';
 
-const createOrder = catchAsync(async (req: Request, res: Response): Promise<any> => {
+const createOrder = catchAsync(async (req: Request, res: Response)=> {
   const { product, quantity, totalPrice } = req.body;
   const email = req.user.email;
   console.log(email);
+  if (!email) {
+    throw new AppError(400, "Invalid user")
+  }
 
   const bike = await bikeServices.getSingleBike(product);
   console.log(bike);
@@ -49,16 +51,16 @@ const createOrder = catchAsync(async (req: Request, res: Response): Promise<any>
 
 
 const findRevenue = catchAsync(async (req: Request, res: Response) => {
-    const result = await orderServices.totalRevenue();
+  const result = await orderServices.totalRevenue();
 
-    sendResponse(res, {
-      data: result,
-      message: 'Revenue calculated successfully',
-      statusCode: 200,
-      success: true,
-      meta: null
-    })
- 
+  sendResponse(res, {
+    data: result,
+    message: 'Revenue calculated successfully',
+    statusCode: 200,
+    success: true,
+    meta: null
+  })
+
 })
 
 export const OrderController = {

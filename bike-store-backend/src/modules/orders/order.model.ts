@@ -10,6 +10,12 @@ const orderSchema = new Schema<TOrder>(
     product: { type: Schema.Types.ObjectId, required: true, ref: "Bike" },
     quantity: { type: Number, required: true },
     totalPrice: { type: Number, required: true },
+    status: {
+      required: true,
+      type: String,
+      enum: ["Pending", "Processing", "Shipped", "Delivered"],
+      default: "Pending"
+    }
   },
   {
     timestamps: true,
