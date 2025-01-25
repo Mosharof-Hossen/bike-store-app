@@ -21,11 +21,11 @@ const createBikeItem = catchAsync(async (req: Request, res: Response) => {
 const getAllBikes = catchAsync(async (req: Request, res: Response) => {
   const result = await bikeServices.getAllBikes(req.query);
   sendResponse(res, {
-    data: result,
+    data: result.result,
     message: "All Bikes Retrieved successfully",
     statusCode: 200,
     success: true,
-    meta: null
+    meta: result.meta
   })
 })
 
