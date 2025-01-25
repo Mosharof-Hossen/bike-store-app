@@ -7,5 +7,12 @@ const createUserValidationSchema = z.object({
         password: z.string().min(5, "Password must be at least 6 characters long"),
     })
 })
+const updateUserValidationSchema = z.object({
+    body: z.object({
+        block: z.boolean({ required_error: "status required" })
+    })
+})
 
-export default createUserValidationSchema;
+export const UserValidationSchema = {
+    createUserValidationSchema, updateUserValidationSchema
+};

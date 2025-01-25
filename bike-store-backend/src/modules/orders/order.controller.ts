@@ -49,7 +49,6 @@ const createOrder = catchAsync(async (req: Request, res: Response)=> {
 })
 
 
-
 const findRevenue = catchAsync(async (req: Request, res: Response) => {
   const result = await orderServices.totalRevenue();
 

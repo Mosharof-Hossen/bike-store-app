@@ -5,3 +5,7 @@ export type TUser = {
     role: "customer" | "admin",
     block: boolean,
 }
+
+export type TUserStatus = {
+    block: boolean
+}
