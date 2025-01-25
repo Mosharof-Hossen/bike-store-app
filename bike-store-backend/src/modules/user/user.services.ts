@@ -9,6 +9,8 @@ const createUser = async (payload: TUser) => {
     if(isUserExists){
         throw new AppError(400,"This Email already used. please login");
     }
+    const newUser = await UserModel.create(payload);
+    return newUser
     
 }
 
