@@ -7,6 +7,7 @@ import handleZodError from "../errors/handleZodError";
 import handleValidationError from "../errors/handleValidationError";
 import handleCastError from "../errors/handleCastError";
 import handleDuplicateError from "../errors/handleDuplicateError";
+import AppError from "../errors/AppError";
 
 
 let errorSources: TErrorSource = [
@@ -49,6 +50,15 @@ const globalErrorHandler = (
     errorSources = simplifiedError.errorSources;
     message = simplifiedError.message;
     statusCode = simplifiedError.statusCode
+  } else if (err instanceof AppError) {
+    errorSources = [
+      {
+        path: '',
+        message: err?.message,
+      },
+    ];
+    message = err?.message;
+    statusCode = err?.statusCode;
   } else if (err instanceof Error) {
     errorSources = [
       {

@@ -6,7 +6,7 @@ import { sendResponse } from '../../utils/sendResponse';
 
 const createBikeItem = catchAsync(async (req: Request, res: Response) => {
   const bikeData = req.body;
-  console.log(bikeData);
+  // console.log(bikeData);
   const result = await bikeServices.createBikeItem(bikeData);
   sendResponse(res, {
     data: result,
