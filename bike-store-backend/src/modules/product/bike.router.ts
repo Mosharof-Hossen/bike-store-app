@@ -8,13 +8,26 @@ import { USER_ROLE } from '../../interface/global';
 const router = express.Router();
 
 router.post(
-    '/products', 
+    '/products',
     auth(USER_ROLE.admin),
     dataValidator(bikeValidationSchema),
-    BikeController.createBikeItem);
+    BikeController.createBikeItem
+);
+
 router.get('/products', BikeController.getAllBikes);
+
 router.get('/products/:id', BikeController.getSingleBike);
-router.put('/products/:id', BikeController.updateBike);
-router.delete('/products/:id', BikeController.deleteBike);
+
+router.put(
+    '/products/:id',
+    auth(USER_ROLE.admin),
+    BikeController.updateBike
+);
+
+router.delete(
+    '/products/:id',
+    auth(USER_ROLE.admin),
+    BikeController.deleteBike
+);
 
 export const BikeRouter = router;
