@@ -22,6 +22,11 @@ const userSchema = new Schema<TUser>({
         required: true,
         enum: ["customer", "admin"],
         default: "customer"
+    },
+    block: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 }, {
     timestamps: true
