@@ -1,33 +1,61 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png"
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { logout, TUser, useCurrentToken } from "../redux/features/Auth/authSlice";
+import { verifyToken } from "../utils/verifytoken";
+import { FiLogOut } from "react-icons/fi";
+
+const userRole = {
+    customer: "customer",
+    admin: "admin"
+}
 
 const Dashboard = () => {
+    const token = useAppSelector(useCurrentToken);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate()
+    let user;
+    if (token) {
+        user = verifyToken(token) as TUser;
+    }
+
     let links;
 
-    links = <>
-        <NavLink to={"/admin/dashboard"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Profile</li></NavLink>
-        <NavLink to={"/admin/dashboard/all-products"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>All Products</li></NavLink>
-        <NavLink to={"/admin/dashboard/create-bike"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Create Bike</li></NavLink>
-        <NavLink to={"/admin/dashboard/manage-order"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage Order</li></NavLink>
-        <NavLink to={"/admin/dashboard/manage-users"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage User</li></NavLink>
+    const handleLogout = () => {
+        dispatch(logout())
+        navigate("/")
+    }
 
-        <div className="divider w-full"></div>
+    if (user?.role === userRole.admin) {
+        links = <>
+            <NavLink to={"/admin/dashboard"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Profile</li></NavLink>
+            <NavLink to={"/admin/dashboard/all-products"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>All Products</li></NavLink>
+            <NavLink to={"/admin/dashboard/create-bike"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Create Bike</li></NavLink>
+            <NavLink to={"/admin/dashboard/manage-order"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage Order</li></NavLink>
+            <NavLink to={"/admin/dashboard/manage-users"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage User</li></NavLink>
 
-        <NavLink to={"/"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Home</li></NavLink>
-        <NavLink to={"/shop"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Shop</li></NavLink>
-    </>
+            <div className="divider w-full"></div>
 
-    links = <>
-        <NavLink to={"/user/dashboard"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Profile</li></NavLink>
-        <NavLink to={"/user/dashboard/my-orders"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>My Orders</li></NavLink>
-        <NavLink to={"/user/dashboard/Payment-history"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Payment History</li></NavLink>
-        <NavLink to={"/user/dashboard/update-password"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Update Password</li></NavLink>
+            <NavLink to={"/"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Home</li></NavLink>
+            <NavLink to={"/shop"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Shop</li></NavLink>
+            <button onClick={() => handleLogout()} className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg">Logout <FiLogOut /> </button>
+        </>
+    }
 
-        <div className="divider w-full"></div>
+    if (user?.role === userRole.customer) {
+        links = <>
+            <NavLink to={"/user/dashboard"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Profile</li></NavLink>
+            <NavLink to={"/user/dashboard/my-orders"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>My Orders</li></NavLink>
+            <NavLink to={"/user/dashboard/Payment-history"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Payment History</li></NavLink>
+            <NavLink to={"/user/dashboard/update-password"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Update Password</li></NavLink>
 
-        <NavLink to={"/"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Home</li></NavLink>
-        <NavLink to={"/shop"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Shop</li></NavLink>
-    </>
+            <div className="divider w-full"></div>
+
+            <NavLink to={"/"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Home</li></NavLink>
+            <NavLink to={"/shop"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Shop</li></NavLink>
+            <button onClick={() => handleLogout()} className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg">Logout <FiLogOut /> </button>
+        </>
+    }
 
     return (
         <div className="drawer ">

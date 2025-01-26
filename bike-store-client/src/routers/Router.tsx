@@ -15,6 +15,7 @@ import UserProfile from "../pages/User/UserProfile";
 import MyOrders from "../pages/User/MyOrders";
 import PaymentHistory from "../pages/User/PaymentHistory";
 import UpdatePassword from "../pages/User/UpdatePassword";
+import PrivateRouter from "./PrivateRouter";
 
 const router = createBrowserRouter([
     {
@@ -50,23 +51,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/admin/dashboard",
-                element: <AdminProfile></AdminProfile>
+                element: <PrivateRouter role="admin"><AdminProfile></AdminProfile></PrivateRouter>
             },
             {
                 path: "/admin/dashboard/all-products",
-                element: <AllProducts></AllProducts>
+                element: <PrivateRouter role="admin"><AllProducts></AllProducts></PrivateRouter>
             },
             {
                 path: "/admin/dashboard/create-bike",
-                element: <CreateBike></CreateBike>
+                element: <PrivateRouter role = "admin"><CreateBike></CreateBike></PrivateRouter>
             },
             {
                 path: "/admin/dashboard/manage-order",
-                element: <ManageOrders></ManageOrders>
+                element: <PrivateRouter role="admin"><ManageOrders></ManageOrders></PrivateRouter>
             },
             {
                 path: "/admin/dashboard/manage-users",
-                element: <ManageUsers></ManageUsers>
+                element: <PrivateRouter role="admin"><ManageUsers></ManageUsers></PrivateRouter>
             },
         ]
     },
@@ -77,19 +78,19 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/user/dashboard",
-                element: <UserProfile></UserProfile>
+                element: <PrivateRouter role="customer"><UserProfile></UserProfile></PrivateRouter>
             },
             {
                 path: "/user/dashboard/my-orders",
-                element: <MyOrders></MyOrders>
+                element: <PrivateRouter role="customer"><MyOrders></MyOrders></PrivateRouter>
             },
             {
                 path: "/user/dashboard/Payment-history",
-                element: <PaymentHistory></PaymentHistory>
+                element: <PrivateRouter role="customer"><PaymentHistory></PaymentHistory></PrivateRouter>
             },
             {
                 path: "/user/dashboard/update-password",
-                element: <UpdatePassword></UpdatePassword>
+                element: <PrivateRouter role="customer"><UpdatePassword></UpdatePassword></PrivateRouter>
             },
         ]
     },

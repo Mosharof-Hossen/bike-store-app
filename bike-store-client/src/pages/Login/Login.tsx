@@ -44,7 +44,7 @@ const Login = () => {
         }
         else {
             toast.success(res.data?.message)
-            navigate("/login")
+            navigate("/")
         }
     }
     return (
