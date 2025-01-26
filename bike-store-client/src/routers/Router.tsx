@@ -5,6 +5,7 @@ import Shop from "../pages/Shop/Shop";
 import Contact from "../pages/Contact/Contact";
 import SignUp from "../pages/SignUp/SignUp";
 import Login from "../pages/Login/Login";
+import Dashboard from "../Layout/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
                 element: <Login></Login>
             },
         ]
+    },
+    
+    {
+        path: "/user/dashboard",
+        element: <Dashboard></Dashboard>,
     }
 ])
 
