@@ -1,6 +1,7 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from "../../assets/logo.png"
 import "./Navbar.css"
+import { FaRegUser } from 'react-icons/fa';
 
 const Navbar = () => {
 
@@ -44,7 +45,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <Link to={"/sign-up"}><button className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg"><FaRegUser /> Join Us</button></Link>
                 </div>
             </div>
         </div>
