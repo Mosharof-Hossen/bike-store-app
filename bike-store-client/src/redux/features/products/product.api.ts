@@ -1,3 +1,5 @@
+import { TResponse } from "../../../types/global.type";
+import { TProduct } from "../../../types/productsType";
 import { baseApi } from "../../api/baseApi";
 
 const productApi = baseApi.injectEndpoints({
@@ -9,12 +11,11 @@ const productApi = baseApi.injectEndpoints({
                     url: "/store/products"
                 }
             },
-            transformResponse: (res) => {
-                return res
-                // {
-                //     data: res?.data,
-                //     meta: res?.meta
-                // }
+            transformResponse: (res: TResponse<TProduct>) => {
+                return {
+                    data: res?.data,
+                    meta: res?.meta
+                }
             }
         })
     })
