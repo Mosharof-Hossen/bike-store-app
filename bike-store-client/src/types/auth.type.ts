@@ -17,3 +17,13 @@ export type TData = {
         __v: number
     }
 }
+
+export type TUserLoginResponse = {
+        success: boolean
+        message: string
+        data: TToken
+}
+
+export type TToken = {
+    accessToken: string
+}

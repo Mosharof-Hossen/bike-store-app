@@ -13,11 +13,9 @@ const SignUp = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm()
+    } = useForm({ })
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        console.log(data)
         const res = await signUp(data) as TResponse<TUserResponse>;
-        // console.log(res.data.success);
         console.log(res);
         if (res.error) {
             toast.error(res.error?.data.message)
@@ -25,9 +23,9 @@ const SignUp = () => {
         else {
             toast.success(res.data?.message)
             navigate("/login")
-        }
-
+        } 
     }
+    console.log(errors);
     return (
         <div
             className='h-screen bg-cover flex items-center bg-center '
@@ -54,9 +52,12 @@ const SignUp = () => {
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block ">Password</label>
-                        <input type="password" id="password" placeholder="Password"  {...register("password", { required: true })} className="w-full px-4 py-3 rounded-md" />
+                        <input type="password" id="password" placeholder="Password"  {...register("password", { required: true,  minLength: 6  })} className="w-full px-4 py-3 rounded-md" />
                         {
-                            errors?.password && <p><small className="text-red-500">Password is Required</small></p>
+                            errors?.password?.type == "required" && <p><small className="text-red-500">Password is Required</small></p>
+                        }
+                        {
+                            errors?.password?.type == "minLength" && <p className=" text-red-500"><small>Password must be at least 6 character.</small></p>
                         }
                     </div>
                     <button className="bg-[#22292f] hover:bg-black block w-full p-3 text-center rounded-sm ">Sign up</button>
