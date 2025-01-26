@@ -11,6 +11,10 @@ import AllProducts from "../pages/Admin/AllProducts";
 import CreateBike from "../pages/Admin/CreateBike";
 import ManageOrders from "../pages/Admin/ManageOrders";
 import ManageUsers from "../pages/Admin/ManageUsers";
+import UserProfile from "../pages/User/UserProfile";
+import MyOrders from "../pages/User/MyOrders";
+import PaymentHistory from "../pages/User/PaymentHistory";
+import UpdatePassword from "../pages/User/UpdatePassword";
 
 const router = createBrowserRouter([
     {
@@ -65,7 +69,31 @@ const router = createBrowserRouter([
                 element: <ManageUsers></ManageUsers>
             },
         ]
-    }
+    },
+
+    {
+        path: "/user/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "/user/dashboard",
+                element: <UserProfile></UserProfile>
+            },
+            {
+                path: "/user/dashboard/my-orders",
+                element: <MyOrders></MyOrders>
+            },
+            {
+                path: "/user/dashboard/Payment-history",
+                element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: "/user/dashboard/update-password",
+                element: <UpdatePassword></UpdatePassword>
+            },
+        ]
+    },
+
 ])
 
 export default router;

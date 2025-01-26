@@ -2,13 +2,26 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png"
 
 const Dashboard = () => {
+    let links;
 
-    const links = <>
+    links = <>
         <NavLink to={"/admin/dashboard"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Profile</li></NavLink>
         <NavLink to={"/admin/dashboard/all-products"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>All Products</li></NavLink>
         <NavLink to={"/admin/dashboard/create-bike"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Create Bike</li></NavLink>
         <NavLink to={"/admin/dashboard/manage-order"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage Order</li></NavLink>
         <NavLink to={"/admin/dashboard/manage-users"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage User</li></NavLink>
+
+        <div className="divider w-full"></div>
+
+        <NavLink to={"/"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Home</li></NavLink>
+        <NavLink to={"/shop"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Shop</li></NavLink>
+    </>
+
+    links = <>
+        <NavLink to={"/user/dashboard"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Profile</li></NavLink>
+        <NavLink to={"/user/dashboard/my-orders"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>My Orders</li></NavLink>
+        <NavLink to={"/user/dashboard/Payment-history"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Payment History</li></NavLink>
+        <NavLink to={"/user/dashboard/update-password"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Update Password</li></NavLink>
 
         <div className="divider w-full"></div>
 
