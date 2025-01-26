@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <h1 className='text-green-500'>allah vorosha</h1>
+      <h1 className='text-primary-c'>allah vorosha</h1>
     </>
   )
 }
