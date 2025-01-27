@@ -26,3 +26,9 @@ export type TResponse<T> = {
     error?: TError;
     meta?: TMeta;
 }
+
+
+export type TQueryParams = {
+    name: string,
+    value: boolean | React.Key;
+}

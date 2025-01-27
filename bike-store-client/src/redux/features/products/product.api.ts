@@ -5,10 +5,11 @@ import { baseApi } from "../../api/baseApi";
 const productApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getAllProducts: builder.query({
-            query: () => {
-
+            query: (params) => {
+console.log({params});
                 return {
-                    url: "/store/products"
+                    url: "/store/products",
+                    params
                 }
             },
             transformResponse: (res: TResponse<TProduct>) => {

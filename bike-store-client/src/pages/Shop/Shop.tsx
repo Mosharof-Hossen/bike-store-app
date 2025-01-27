@@ -5,7 +5,7 @@ import { useState } from "react";
 import PriceRangeFilter from "./PriceRangeFilter";
 import { useGetAllProductsQuery } from "../../redux/features/products/product.api";
 import { TProduct } from "../../types/productsType";
-import { TMeta } from "../../types/global.type";
+import { TMeta, TQueryParams } from "../../types/global.type";
 import CustomSpinner from "../../components/Spinner/CustomSpinner";
 import ProductCart from "../../components/Products/ProductCart";
 import { Link } from "react-router-dom";
@@ -25,22 +25,8 @@ const topBikeBrands: string[] = [
 ];
 
 const Shop = () => {
-    const { data, isFetching } = useGetAllProductsQuery(undefined) as {
-            data?: {
-                data?: TProduct[],
-                meta?: TMeta;
-            };
-            isFetching: boolean;
-        };
-        console.log(data, isFetching);
+    const [params, setParams] = useState<TQueryParams[]>([]);
 
-
-
-
-    const [viewItem, setViewItem] = useState({})
-
-    const itemPerPage = 10;
-    const [currentPage, setCurrentPage] = useState(1);
     const { register, watch } = useForm({
         defaultValues: {
             categories: [],
@@ -54,10 +40,28 @@ const Shop = () => {
     const searchQuery = watch('search');
     const sort = watch("sort")
 
-    const viewItemFunction = (item) => {
-        setViewItem(item);
-        // document.getElementById('my_modal_2').showModal()
-    }
+    const queryParams = {
+        category: selectedCategories.length > 0 ? selectedCategories.join(',') : undefined,
+    };
+
+    const { data, isFetching } = useGetAllProductsQuery(queryParams) as {
+        data?: {
+            data?: TProduct[],
+            meta?: TMeta;
+        };
+        isFetching: boolean;
+    };
+    console.log(data, isFetching);
+
+    console.log({ queryParams });
+
+    // const itemPerPage = 10;
+    // const [currentPage, setCurrentPage] = useState(1)
+
+
+
+    // console.log({ selectedCategories, searchQuery });
+
     const handlePriceChange = (minPrice: number, maxPrice: number) => {
         console.log({ minPrice, maxPrice });
     }
