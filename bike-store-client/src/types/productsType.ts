@@ -12,3 +12,10 @@ export type TProduct = {
     createdAt: string
     updatedAt: string
 }
+
+export type TDeleteResponse =  {
+    success: boolean
+    message: string
+    meta: null
+    data: []
+  }

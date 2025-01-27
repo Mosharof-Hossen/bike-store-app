@@ -3,8 +3,12 @@ import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { useGetAllProductsQuery } from '../../redux/features/products/product.api';
 import { TMeta } from '../../types/global.type';
 import { TProduct } from '../../types/productsType';
+import Swal from 'sweetalert2'
+import { useDeleteProductMutation } from '../../redux/features/Admin/admin.api';
+import { toast } from 'sonner';
 
 const AllProducts = () => {
+    const [deleteProduct] = useDeleteProductMutation();
     const { data: meta, isFetching: metaFetching } = useGetAllProductsQuery(undefined,) as {
         data?: {
             data?: TProduct[],
@@ -23,8 +27,31 @@ const AllProducts = () => {
 
     console.log(" data:", data?.data);
 
-    const handleDelete = (id:string) => { }
-    const handleItemEdit = (id:string) => { }
+    const handleDelete = (id: string) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                console.log("done");
+                const res = await deleteProduct(id)
+                console.log("deleteRes:", res);
+                if(res.data?.data.success){
+                    toast.success(res?.data?.data?.message)
+                }
+            }
+        });
+    }
+
+
+    const handleItemEdit = (id: string) => {
+
+    }
 
     return (
         <div className='px-10 space-y-10'>

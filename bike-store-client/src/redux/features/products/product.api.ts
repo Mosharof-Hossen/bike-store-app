@@ -18,7 +18,8 @@ const productApi = baseApi.injectEndpoints({
                     data: res?.data,
                     meta: res?.meta
                 }
-            }
+            },
+            providesTags: ["products"]
         })
     })
 })

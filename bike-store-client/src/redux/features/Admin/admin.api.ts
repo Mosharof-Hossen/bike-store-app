@@ -1,4 +1,5 @@
 import { TResponse } from "../../../types/global.type"
+import { TDeleteResponse } from "../../../types/productsType";
 import { TUserAdmin } from "../../../types/user.type"
 import { baseApi } from "../../api/baseApi"
 
@@ -13,7 +14,23 @@ const productApi = baseApi.injectEndpoints({
             },
             transformResponse: (res: TResponse<TUserAdmin>) => {
                 return {
-                    data:res?.data
+                    data: res?.data
+                }
+            }
+        }),
+
+        deleteProduct: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `/store/products/${id}`,
+                    method: "DELETE"
+                }
+            },
+            invalidatesTags: ["products"],
+
+            transformResponse: (res: TResponse<TDeleteResponse>) => {
+                return {
+                    data: res
                 }
             }
         }),
@@ -27,10 +44,10 @@ const productApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (res: TResponse<TUserAdmin[]>) => {
-                console.log("allUser:",res);
-                
+                console.log("allUser:", res);
+
                 return {
-                    data:res?.data
+                    data: res?.data
                 }
             }
         })
@@ -38,4 +55,4 @@ const productApi = baseApi.injectEndpoints({
 })
 
 
-export const { useGetSingleUserQuery,useGetAllUsersQuery } = productApi
+export const { useGetSingleUserQuery, useGetAllUsersQuery, useDeleteProductMutation } = productApi
