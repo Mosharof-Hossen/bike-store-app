@@ -5,7 +5,7 @@ import { useState } from "react";
 import PriceRangeFilter from "./PriceRangeFilter";
 import { useGetAllProductsQuery } from "../../redux/features/products/product.api";
 import { TProduct } from "../../types/productsType";
-import { TMeta,  } from "../../types/global.type";
+import { TMeta, } from "../../types/global.type";
 import CustomSpinner from "../../components/Spinner/CustomSpinner";
 import ProductCart from "../../components/Products/ProductCart";
 import { Link } from "react-router-dom";
@@ -44,7 +44,8 @@ const Shop = () => {
     const queryParams = {
         searchTerm: searchQuery || undefined,
         category: selectedCategories.length > 0 ? selectedCategories.join(',') : undefined,
-        filterPrice: priceLimit || undefined
+        filterPrice: priceLimit || undefined,
+        sort: sort || undefined,
     };
     const handlePriceChange = (minPrice: number, maxPrice: number) => {
         setPriceLimit(`${minPrice}-${maxPrice}`)
@@ -57,8 +58,7 @@ const Shop = () => {
         };
         isFetching: boolean;
     };
-    console.log(data, isFetching);
-
+    console.log({ sort });
     console.log({ queryParams });
 
     // const itemPerPage = 10;
@@ -99,8 +99,8 @@ const Shop = () => {
                                 <span className="w-24">Sort by:</span>
                                 <select  {...register("sort")} className="select select-bordered w-full max-w-xs">
                                     <option value={sort} disabled >Select an Option</option>
-                                    <option value={"low-to-high"}>Price: Low to High</option>
-                                    <option value={"high-to-low"}>Price: High to Low</option>
+                                    <option value={"-price"}>Price: Low to High</option>
+                                    <option value={"price"}>Price: High to Low</option>
                                 </select>
 
                             </div>
