@@ -3,6 +3,20 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
+const categories: string[] = ['Mountain', 'Road', 'Hybrid', 'Electric'];
+const topBikeBrands: string[] = [
+    "Honda",
+    "Yamaha",
+    "Kawasaki",
+    "Ducati",
+    "Suzuki",
+    "BMW Motorrad",
+    "KTM",
+    "Harley-Davidson",
+    "Royal Enfield",
+    "TVS"
+];
+
 const Shop = () => {
     const [viewItem, setViewItem] = useState({})
 
@@ -23,8 +37,8 @@ const Shop = () => {
 
     // const { data, isLoading: dataLoading, isError } = useFetchGetItem(selectedCategories, isDiscounted, searchQuery, sort, itemPerPage, currentPage);
     // const { data: categories, isError: categoryError, isLoading: categoryLoading } = useFetchGetAllCategories();
-    const [categories,] = useState<string[]>(['Mountain', 'Road', 'Hybrid', 'Electric'])
-    console.log(categories);
+    // const [categories,] = useState<string[]>(['Mountain', 'Road', 'Hybrid', 'Electric'])
+    // console.log(categories);
     const viewItemFunction = (item) => {
         setViewItem(item);
         // document.getElementById('my_modal_2').showModal()
@@ -66,16 +80,7 @@ const Shop = () => {
                             </div>
                         </div>
                     </div>
-                    {/* {
-                        dataLoading ?
-                            <div className='text-center'><span className='loading loading-bars loading-lg'></span></div>
-                            :
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5">
-                                {
-                                    data.items.map((item) => <ProductCart key={item._id} item={item} viewItemFunction={viewItemFunction}></ProductCart>)
-                                }
-                            </div>
-                    } */}
+                    
                     {/* <dialog id="my_modal_2" className="modal">
                         <ItemModal item={viewItem}></ItemModal>
                     </dialog> */}
@@ -98,21 +103,11 @@ const Shop = () => {
                     <div className="menu bg-base-200 text-base-content min-h-full lg:w-48 w-52 p-4 lg:mt-0 mt-16">
                         <div className="space-y-2">
                             <div className=" font-semibold ">
-                                <form action="">
-                                    {/* {
-                                        categories?.map((category: string) =>
-                                            <div key={category} className="form-control">
-                                                <label className="label cursor-pointer flex justify-start gap-3">
-                                                    <input value={category} {...register('categories')} type="checkbox" className="checkbox" />
-                                                    <p>{category}</p>
-                                                </label>
-                                            </div>
-                                        )
-                                    } */}
+                                <form action="" className="space-y-2">
                                     <ul className=" bg-base-200 rounded-box w-full">
                                         <li>
                                             <details open className="">
-                                                <summary className="text-2xl font-bold">Categories</summary>
+                                                <summary className="text-2xl font-bold text-[#22292f] px-2 mb-1">Categories</summary>
                                                 <ul className="space-y-1">
                                                     {/* <li><a>Submenu 1</a></li>
                                                     <li><a>Submenu 2</a></li> */}
@@ -130,11 +125,32 @@ const Shop = () => {
                                             </details>
                                         </li>
                                     </ul>
+                                    <ul className=" bg-base-200 rounded-box w-full">
+                                        <li>
+                                            <details open className="">
+                                                <summary className="text-2xl font-bold text-[#22292f] px-2 mb-1">Bike Brand</summary>
+                                                <ul className="space-y-1">
+                                                    {/* <li><a>Submenu 1</a></li>
+                                                    <li><a>Submenu 2</a></li> */}
+                                                    {
+                                                        topBikeBrands?.map((category: string) =>
+                                                            <div key={category} className="form-control">
+                                                                <label className="label cursor-pointer flex justify-start gap-3">
+                                                                    <input value={category} {...register('categories')} type="checkbox" className="checkbox" />
+                                                                    <p>{category}</p>
+                                                                </label>
+                                                            </div>
+                                                        )
+                                                    }
+                                                </ul>
+                                            </details>
+                                        </li>
+                                    </ul>
                                 </form>
                             </div>
                             <label className="label cursor-pointer flex justify-start gap-3">
                                 <input  {...register('discounted')} type="checkbox" className="checkbox" />
-                                <h4 className="text-2xl font-bold">Discount</h4>
+                                <h4 className="text-2xl font-bold text-[#22292f]">InStock</h4>
                             </label>
 
                         </div>
