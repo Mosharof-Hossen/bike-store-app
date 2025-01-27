@@ -41,6 +41,7 @@ const Shop = () => {
     const sort = watch("sort")
 
     const queryParams = {
+        searchTerm: searchQuery || undefined,
         category: selectedCategories.length > 0 ? selectedCategories.join(',') : undefined,
     };
 
