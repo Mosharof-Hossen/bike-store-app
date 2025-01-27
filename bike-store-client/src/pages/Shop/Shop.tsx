@@ -1,14 +1,13 @@
 
-import { FaAngleDoubleRight, FaArrowRight } from "react-icons/fa";
+import { FaAngleDoubleRight, } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import {  useState } from "react";
 import PriceRangeFilter from "./PriceRangeFilter";
 import { useGetAllProductsQuery } from "../../redux/features/products/product.api";
 import { TProduct } from "../../types/productsType";
 import { TMeta, } from "../../types/global.type";
 import CustomSpinner from "../../components/Spinner/CustomSpinner";
 import ProductCart from "../../components/Products/ProductCart";
-import { Link } from "react-router-dom";
 
 const categories: string[] = ['Mountain', 'Road', 'Hybrid', 'Electric'];
 const topBikeBrands: string[] = [
@@ -26,6 +25,8 @@ const topBikeBrands: string[] = [
 
 const Shop = () => {
     // const [params, setParams] = useState<TQueryParams[]>([]);
+    // const itemPerPage = 2;
+    const [currentPage, setCurrentPage] = useState<number>(1)
     const [priceLimit, setPriceLimit] = useState("0-10000")
 
     const { register, watch } = useForm({
@@ -47,27 +48,19 @@ const Shop = () => {
         filterPrice: priceLimit || undefined,
         sort: sort || undefined,
         inStock: isStock || undefined,
+        page: currentPage || undefined,
     };
     const handlePriceChange = (minPrice: number, maxPrice: number) => {
         setPriceLimit(`${minPrice}-${maxPrice}`)
     }
 
-    const { data, isFetching } = useGetAllProductsQuery(queryParams) as {
+    const { data, isFetching , } = useGetAllProductsQuery(queryParams) as {
         data?: {
             data?: TProduct[],
             meta?: TMeta;
         };
         isFetching: boolean;
     };
-    console.log({ isStock });
-    console.log({ queryParams });
-
-    // const itemPerPage = 10;
-    // const [currentPage, setCurrentPage] = useState(1)
-
-
-
-    // console.log({ selectedCategories, searchQuery });
 
 
     return (
@@ -118,22 +111,22 @@ const Shop = () => {
                                         data?.data?.map((item: TProduct) => <ProductCart key={item._id} item={item}></ProductCart>)
                                     }
                                 </div>
-                                <div className='flex justify-center mt-8'>
-                                    <Link to={"/shop"}><button className="btn bg-[#22292f] hover:bg-black text-white">More <FaArrowRight></FaArrowRight></button></Link>
-                                </div>
+
                             </div>
                     }
-                    <div className="flex justify-center mt-5">
-                        {/* {
-                            [...Array(data?.totalPage).keys()].map(page => <button
+                    <div className="flex justify-center mt-5 space-x-1">
+                        {
+                            [...Array(data?.meta?.totalPage)].map((i, page) => <button
                                 key={page}
-                                className={currentPage == page + 1 ? "text-xl px-5 bg-primary-c text-white py-3 mx-1 border-2 rounded-full" : "text-xl px-5 py-3 mx-1 border-2 rounded-full"}
-                                onClick={() => setCurrentPage(page + 1)}
+                                className={currentPage == page + 1 ? "  bg-[#22292f] text-white btn btn-circle p-4 text-xl" : "btn btn-circle"}
+                                onClick={() => {
+                                    console.log(i);
+                                    setCurrentPage(page + 1)
+                                }}
                             >
-
                                 {page + 1}
                             </button>)
-                        } */}
+                        }
                     </div>
 
                 </div>
