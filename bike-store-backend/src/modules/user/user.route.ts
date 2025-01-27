@@ -25,5 +25,10 @@ router.post(
     dataValidator(UserValidationSchema.updateUserValidationSchema),
     UserControllers.userStatusChange
 )
+router.get(
+    "/:id",
+    auth(USER_ROLE.admin, USER_ROLE.customer),
+    UserControllers.getSingleUser
+)
 
 export const userRouter = router;

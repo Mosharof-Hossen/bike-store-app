@@ -31,8 +31,17 @@ const getAllUser = catchAsync(async (req, res) => {
         success: true,
     })
 })
+const getSingleUser = catchAsync(async (req, res) => {
+    const result = await UserServices.singleUser(req.params.id);
+    sendResponse(res, {
+        data: result,
+        message: "Successfully retrieved user",
+        statusCode: 200,
+        success: true,
+    })
+})
 
 
 export const UserControllers = {
-    userRegistration, userStatusChange,getAllUser
+    userRegistration, userStatusChange, getAllUser, getSingleUser
 }

@@ -19,10 +19,13 @@ const userStatusChange = async (id: string, payload: TUserStatus) => {
 const allUsers = async () => {
     const result = await UserModel.find();
     return result
-
+}
+const singleUser = async (payload: string) => {
+    const result = await UserModel.findOne({ email: payload });
+    return result
 }
 
 
 export const UserServices = {
-    allUsers, createUser, userStatusChange
+    allUsers, createUser, userStatusChange,singleUser
 }

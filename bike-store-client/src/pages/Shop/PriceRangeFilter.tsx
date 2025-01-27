@@ -40,7 +40,7 @@ const PriceRangeFilter: React.FC<PriceRangeProps> = ({ min, max, onChange }) => 
                     setValue("minPrice", value);
                     onChange(value, maxPrice);
                 }}
-                className="w-full cursor-pointer accent-blue-500"
+                className="w-full cursor-pointer accent-[#22292f]"
             />
 
             {/* Max Price Slider */}
@@ -54,7 +54,7 @@ const PriceRangeFilter: React.FC<PriceRangeProps> = ({ min, max, onChange }) => 
                     setValue("maxPrice", value);
                     onChange(minPrice, value);
                 }}
-                className="w-full cursor-pointer accent-blue-500"
+                className="w-full cursor-pointer accent-[#22292f]"
             />
 
         </div>
