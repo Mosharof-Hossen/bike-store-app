@@ -1,7 +1,14 @@
 
-import { FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleRight, FaArrowRight } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import PriceRangeFilter from "./PriceRangeFilter";
+import { useGetAllProductsQuery } from "../../redux/features/products/product.api";
+import { TProduct } from "../../types/productsType";
+import { TMeta } from "../../types/global.type";
+import CustomSpinner from "../../components/Spinner/CustomSpinner";
+import ProductCart from "../../components/Products/ProductCart";
+import { Link } from "react-router-dom";
 
 const categories: string[] = ['Mountain', 'Road', 'Hybrid', 'Electric'];
 const topBikeBrands: string[] = [
@@ -18,6 +25,18 @@ const topBikeBrands: string[] = [
 ];
 
 const Shop = () => {
+    const { data, isFetching } = useGetAllProductsQuery(undefined) as {
+            data?: {
+                data?: TProduct[],
+                meta?: TMeta;
+            };
+            isFetching: boolean;
+        };
+        console.log(data, isFetching);
+
+
+
+
     const [viewItem, setViewItem] = useState({})
 
     const itemPerPage = 10;
@@ -35,13 +54,12 @@ const Shop = () => {
     const searchQuery = watch('search');
     const sort = watch("sort")
 
-    // const { data, isLoading: dataLoading, isError } = useFetchGetItem(selectedCategories, isDiscounted, searchQuery, sort, itemPerPage, currentPage);
-    // const { data: categories, isError: categoryError, isLoading: categoryLoading } = useFetchGetAllCategories();
-    // const [categories,] = useState<string[]>(['Mountain', 'Road', 'Hybrid', 'Electric'])
-    // console.log(categories);
     const viewItemFunction = (item) => {
         setViewItem(item);
         // document.getElementById('my_modal_2').showModal()
+    }
+    const handlePriceChange = (minPrice: number, maxPrice: number) => {
+        console.log({ minPrice, maxPrice });
     }
     return (
         <div>
@@ -80,10 +98,21 @@ const Shop = () => {
                             </div>
                         </div>
                     </div>
-                    
-                    {/* <dialog id="my_modal_2" className="modal">
-                        <ItemModal item={viewItem}></ItemModal>
-                    </dialog> */}
+                    {
+                        isFetching ?
+                            <CustomSpinner></CustomSpinner>
+                            :
+                            <div className="p-5">
+                                <div className=' grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-8 px-2 md:px-0'>
+                                    {
+                                        data?.data?.map((item: TProduct) => <ProductCart key={item._id} item={item}></ProductCart>)
+                                    }
+                                </div>
+                                <div className='flex justify-center mt-8'>
+                                    <Link to={"/shop"}><button className="btn bg-[#22292f] hover:bg-black text-white">More <FaArrowRight></FaArrowRight></button></Link>
+                                </div>
+                            </div>
+                    }
                     <div className="flex justify-center mt-5">
                         {/* {
                             [...Array(data?.totalPage).keys()].map(page => <button
@@ -104,13 +133,13 @@ const Shop = () => {
                         <div className="space-y-2">
                             <div className=" font-semibold ">
                                 <form action="" className="space-y-2">
+                                    <PriceRangeFilter min={0} max={1500} onChange={handlePriceChange}></PriceRangeFilter>
+
                                     <ul className=" bg-base-200 rounded-box w-full">
                                         <li>
                                             <details open className="">
-                                                <summary className="text-2xl font-bold text-[#22292f] px-2 mb-1">Categories</summary>
+                                                <summary className="text-lg font-semibold text-[#22292f] px-2 mb-1">Categories</summary>
                                                 <ul className="space-y-1">
-                                                    {/* <li><a>Submenu 1</a></li>
-                                                    <li><a>Submenu 2</a></li> */}
                                                     {
                                                         categories?.map((category: string) =>
                                                             <div key={category} className="form-control">
@@ -128,10 +157,8 @@ const Shop = () => {
                                     <ul className=" bg-base-200 rounded-box w-full">
                                         <li>
                                             <details open className="">
-                                                <summary className="text-2xl font-bold text-[#22292f] px-2 mb-1">Bike Brand</summary>
+                                                <summary className="text-lg font-semibold text-[#22292f] px-2 mb-1">Bike Brand</summary>
                                                 <ul className="space-y-1">
-                                                    {/* <li><a>Submenu 1</a></li>
-                                                    <li><a>Submenu 2</a></li> */}
                                                     {
                                                         topBikeBrands?.map((category: string) =>
                                                             <div key={category} className="form-control">
@@ -150,7 +177,7 @@ const Shop = () => {
                             </div>
                             <label className="label cursor-pointer flex justify-start gap-3">
                                 <input  {...register('discounted')} type="checkbox" className="checkbox" />
-                                <h4 className="text-2xl font-bold text-[#22292f]">InStock</h4>
+                                <h4 className="text-lg font-semibold text-[#22292f]">InStock</h4>
                             </label>
 
                         </div>
