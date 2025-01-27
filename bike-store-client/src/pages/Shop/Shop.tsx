@@ -31,13 +31,13 @@ const Shop = () => {
     const { register, watch } = useForm({
         defaultValues: {
             categories: [],
-            discounted: false,
+            stock: false,
             search: '',
             sort: ""
         }
     })
     const selectedCategories = watch("categories");
-    const isDiscounted = watch("discounted");
+    const isStock = watch("stock");
     const searchQuery = watch('search');
     const sort = watch("sort")
 
@@ -46,6 +46,7 @@ const Shop = () => {
         category: selectedCategories.length > 0 ? selectedCategories.join(',') : undefined,
         filterPrice: priceLimit || undefined,
         sort: sort || undefined,
+        inStock: isStock || undefined,
     };
     const handlePriceChange = (minPrice: number, maxPrice: number) => {
         setPriceLimit(`${minPrice}-${maxPrice}`)
@@ -58,7 +59,7 @@ const Shop = () => {
         };
         isFetching: boolean;
     };
-    console.log({ sort });
+    console.log({ isStock });
     console.log({ queryParams });
 
     // const itemPerPage = 10;
@@ -99,8 +100,9 @@ const Shop = () => {
                                 <span className="w-24">Sort by:</span>
                                 <select  {...register("sort")} className="select select-bordered w-full max-w-xs">
                                     <option value={sort} disabled >Select an Option</option>
-                                    <option value={"-price"}>Price: Low to High</option>
-                                    <option value={"price"}>Price: High to Low</option>
+                                    <option value={""}>Random Price</option>
+                                    <option value={"price"}>Price: Low to High</option>
+                                    <option value={"-price"}>Price: High to Low</option>
                                 </select>
 
                             </div>
@@ -184,7 +186,7 @@ const Shop = () => {
                                 </form>
                             </div>
                             <label className="label cursor-pointer flex justify-start gap-3">
-                                <input  {...register('discounted')} type="checkbox" className="checkbox" />
+                                <input  {...register('stock')} type="checkbox" className="checkbox" />
                                 <h4 className="text-lg font-semibold text-[#22292f]">InStock</h4>
                             </label>
 
