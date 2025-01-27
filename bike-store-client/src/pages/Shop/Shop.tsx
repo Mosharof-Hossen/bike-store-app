@@ -5,7 +5,7 @@ import { useState } from "react";
 import PriceRangeFilter from "./PriceRangeFilter";
 import { useGetAllProductsQuery } from "../../redux/features/products/product.api";
 import { TProduct } from "../../types/productsType";
-import { TMeta, TQueryParams } from "../../types/global.type";
+import { TMeta,  } from "../../types/global.type";
 import CustomSpinner from "../../components/Spinner/CustomSpinner";
 import ProductCart from "../../components/Products/ProductCart";
 import { Link } from "react-router-dom";
@@ -25,7 +25,8 @@ const topBikeBrands: string[] = [
 ];
 
 const Shop = () => {
-    const [params, setParams] = useState<TQueryParams[]>([]);
+    // const [params, setParams] = useState<TQueryParams[]>([]);
+    const [priceLimit, setPriceLimit] = useState("0-10000")
 
     const { register, watch } = useForm({
         defaultValues: {
@@ -43,7 +44,11 @@ const Shop = () => {
     const queryParams = {
         searchTerm: searchQuery || undefined,
         category: selectedCategories.length > 0 ? selectedCategories.join(',') : undefined,
+        filterPrice: priceLimit || undefined
     };
+    const handlePriceChange = (minPrice: number, maxPrice: number) => {
+        setPriceLimit(`${minPrice}-${maxPrice}`)
+    }
 
     const { data, isFetching } = useGetAllProductsQuery(queryParams) as {
         data?: {
@@ -63,9 +68,7 @@ const Shop = () => {
 
     // console.log({ selectedCategories, searchQuery });
 
-    const handlePriceChange = (minPrice: number, maxPrice: number) => {
-        console.log({ minPrice, maxPrice });
-    }
+
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -138,7 +141,7 @@ const Shop = () => {
                         <div className="space-y-2">
                             <div className=" font-semibold ">
                                 <form action="" className="space-y-2">
-                                    <PriceRangeFilter min={0} max={1500} onChange={handlePriceChange}></PriceRangeFilter>
+                                    <PriceRangeFilter min={0} max={10000} onChange={handlePriceChange}></PriceRangeFilter>
 
                                     <ul className=" bg-base-200 rounded-box w-full">
                                         <li>
