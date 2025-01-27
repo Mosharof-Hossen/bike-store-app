@@ -51,13 +51,9 @@ const AllProducts = () => {
         });
     }
 
-
-    // const handleItemEdit = (id: string) => {
-    //     document.getElementById('my_modal_1').showModal()
-    // }
     const modalRef = useRef<HTMLDialogElement | null>(null);
 
-    const openModal = (item:TProduct) => {
+    const openModal = (item: TProduct) => {
         setViewItem(item)
         modalRef.current?.showModal();
     };
@@ -120,7 +116,7 @@ const AllProducts = () => {
 
             <dialog id="my_modal_1" ref={modalRef} className="modal">
                 {/* <ItemModal item={viewItem}></ItemModal> */}
-                <ProductEditModal item = {viewItem}></ProductEditModal>
+                <ProductEditModal forwardRef={modalRef} item={viewItem as TProduct}></ProductEditModal>
             </dialog>
 
         </div>
