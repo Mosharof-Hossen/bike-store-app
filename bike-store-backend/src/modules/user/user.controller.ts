@@ -32,6 +32,7 @@ const getAllUser = catchAsync(async (req, res) => {
     })
 })
 const getSingleUser = catchAsync(async (req, res) => {
+    // const id = req.user.email;
     const result = await UserServices.singleUser(req.params.id);
     sendResponse(res, {
         data: result,

@@ -1,14 +1,28 @@
-import React from 'react';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import userDefaultImage from "../../assets/user.png"
+import { useGetSingleUserQuery } from '../../redux/features/Admin/admin.api';
+import { useAppSelector } from '../../redux/hook';
+import { TUser, useCurrentToken } from '../../redux/features/Auth/authSlice';
+import { verifyToken } from '../../utils/verifytoken';
 
 const AdminProfile = () => {
+    const token = useAppSelector(useCurrentToken);
+    // const dispatch = useAppDispatch();
+    // const navigate = useNavigate()
+    let user;
+    if (token) {
+        user = verifyToken(token) as TUser;
+    }
+    console.log(user);
+    const { data } = useGetSingleUserQuery(user?.email);
+    console.log(data);
+
     return (
         <div>
             <SectionTitle heading={"Transaction Overview"} subHeading={"See an overview of all payments made through the platform, including transaction types, amounts, and statuses."}></SectionTitle>
             <div className="flex lg:flex-row flex-col gap-5 p-5 mt-5">
                 <div className=" flex-1 bg-white p-5 rounded-lg space-y-5">
-                    <img src={ userDefaultImage} className=" w-64 mx-auto" alt="" />
+                    <img src={userDefaultImage} className=" w-64 mx-auto" alt="" />
                     {/* <h2 className="text-center text-3xl font-semibold">{user?.displayName}</h2> */}
                 </div>
                 <div className="flex-1 space-y-3">
