@@ -1,4 +1,4 @@
-import { BaseQueryApi, BaseQueryFn, createApi, DefinitionType, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
@@ -13,10 +13,11 @@ const baseQuery = fetchBaseQuery({
     }
 })
 
-const baseQueryResponse: BaseQueryFn<FetchArgs, BaseQueryApi, DefinitionType> = async (args, api, extraOptions): Promise<any> => {
-    let result = await baseQuery(args, api, extraOptions);
+const baseQueryResponse: BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
+    const result = await baseQuery(args, api, extraOptions);
     return result;
-}
+};
+
 
 
 export const baseApi = createApi({

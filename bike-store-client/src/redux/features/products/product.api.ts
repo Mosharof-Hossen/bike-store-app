@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TResponse } from "../../../types/global.type";
 import { TProduct } from "../../../types/productsType";
 import { baseApi } from "../../api/baseApi";

@@ -13,7 +13,22 @@ const productApi = baseApi.injectEndpoints({
             },
             transformResponse: (res: TResponse<TUserAdmin>) => {
                 return {
-                    res
+                    data:res?.data
+                }
+            }
+        }),
+
+
+        getAllUsers: builder.query({
+            query: (params) => {
+                console.log(params);
+                return {
+                    url: `/user/${params}`,
+                }
+            },
+            transformResponse: (res: TResponse<TUserAdmin>) => {
+                return {
+                    data:res?.data
                 }
             }
         })
