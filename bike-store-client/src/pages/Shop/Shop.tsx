@@ -1,7 +1,7 @@
 
 import { FaAngleDoubleRight, } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import {  useState } from "react";
+import { useState } from "react";
 import PriceRangeFilter from "./PriceRangeFilter";
 import { useGetAllProductsQuery } from "../../redux/features/products/product.api";
 import { TProduct } from "../../types/productsType";
@@ -34,17 +34,20 @@ const Shop = () => {
             categories: [],
             stock: false,
             search: '',
-            sort: ""
+            sort: "",
+            brand: []
         }
     })
     const selectedCategories = watch("categories");
     const isStock = watch("stock");
     const searchQuery = watch('search');
     const sort = watch("sort")
-
+    const brand = watch("brand")
+    console.log({brand});
     const queryParams = {
         searchTerm: searchQuery || undefined,
         category: selectedCategories.length > 0 ? selectedCategories.join(',') : undefined,
+        brand: brand.length > 0 ? brand.join(',') : undefined,
         filterPrice: priceLimit || undefined,
         sort: sort || undefined,
         inStock: isStock || undefined,
@@ -54,7 +57,7 @@ const Shop = () => {
         setPriceLimit(`${minPrice}-${maxPrice}`)
     }
 
-    const { data, isFetching , } = useGetAllProductsQuery(queryParams) as {
+    const { data, isFetching, } = useGetAllProductsQuery(queryParams) as {
         data?: {
             data?: TProduct[],
             meta?: TMeta;
@@ -130,6 +133,8 @@ const Shop = () => {
                     </div>
 
                 </div>
+
+                {/* Side bar */}
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <div className="menu bg-base-200 text-base-content min-h-full lg:w-48 w-52 p-4 lg:mt-0 mt-16">
@@ -163,11 +168,11 @@ const Shop = () => {
                                                 <summary className="text-lg font-semibold text-[#22292f] px-2 mb-1">Bike Brand</summary>
                                                 <ul className="space-y-1">
                                                     {
-                                                        topBikeBrands?.map((category: string) =>
-                                                            <div key={category} className="form-control">
+                                                        topBikeBrands?.map((brand: string) =>
+                                                            <div key={brand} className="form-control">
                                                                 <label className="label cursor-pointer flex justify-start gap-3">
-                                                                    <input value={category} {...register('categories')} type="checkbox" className="checkbox" />
-                                                                    <p>{category}</p>
+                                                                    <input value={brand} {...register('brand')} type="checkbox" className="checkbox" />
+                                                                    <p>{brand}</p>
                                                                 </label>
                                                             </div>
                                                         )

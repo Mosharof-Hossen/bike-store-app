@@ -35,6 +35,10 @@ class QueryBuilder<T> {
             const options = (queryObj.category as string).split(",");
             customQuery.category = { "$in": options };
         }
+        if (queryObj.brand) {
+            const options = (queryObj.brand as string).split(",");
+            customQuery.brand = { "$in": options };
+        }
         if (queryObj.inStock) {
             customQuery.inStock = queryObj.inStock;
         }
