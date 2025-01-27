@@ -23,10 +23,12 @@ const productApi = baseApi.injectEndpoints({
             query: (params) => {
                 console.log(params);
                 return {
-                    url: `/user/${params}`,
+                    url: `/user/all-user`,
                 }
             },
-            transformResponse: (res: TResponse<TUserAdmin>) => {
+            transformResponse: (res: TResponse<TUserAdmin[]>) => {
+                console.log("allUser:",res);
+                
                 return {
                     data:res?.data
                 }
@@ -36,4 +38,4 @@ const productApi = baseApi.injectEndpoints({
 })
 
 
-export const { useGetSingleUserQuery } = productApi
+export const { useGetSingleUserQuery,useGetAllUsersQuery } = productApi
