@@ -29,8 +29,8 @@ const Dashboard = () => {
     if (user?.role === userRole.admin) {
         links = <>
             <NavLink to={"/admin/dashboard"} end className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Profile</li></NavLink>
-            <NavLink to={"/admin/dashboard/all-products"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>All Products</li></NavLink>
-            <NavLink to={"/admin/dashboard/create-bike"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Create Bike</li></NavLink>
+            <NavLink to={"/admin/dashboard/all-products"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage Products</li></NavLink>
+            <NavLink to={"/admin/dashboard/create-bike"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Add Bike</li></NavLink>
             <NavLink to={"/admin/dashboard/manage-order"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage Order</li></NavLink>
             <NavLink to={"/admin/dashboard/manage-users"} className={"text-[#22292f] lg:px-2  lg:mx-1 w-fit py-1 rounded text-lg font-semibold "}><li>Manage User</li></NavLink>
 
