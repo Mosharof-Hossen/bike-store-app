@@ -7,8 +7,11 @@ import Swal from 'sweetalert2'
 import { useDeleteProductMutation } from '../../redux/features/Admin/admin.api';
 import { toast } from 'sonner';
 import CustomSpinner from '../../components/Spinner/CustomSpinner';
+import ProductEditModal from './ProductEditModal';
+import { useRef, useState } from 'react';
 
 const AllProducts = () => {
+    const [viewItem, setViewItem] = useState({});
     const [deleteProduct] = useDeleteProductMutation();
     const { data: meta, isFetching: metaFetching } = useGetAllProductsQuery(undefined,) as {
         data?: {
@@ -49,9 +52,15 @@ const AllProducts = () => {
     }
 
 
-    const handleItemEdit = (id: string) => {
+    // const handleItemEdit = (id: string) => {
+    //     document.getElementById('my_modal_1').showModal()
+    // }
+    const modalRef = useRef<HTMLDialogElement | null>(null);
 
-    }
+    const openModal = (item:TProduct) => {
+        setViewItem(item)
+        modalRef.current?.showModal();
+    };
 
     return (
         <div className='px-10 space-y-10'>
@@ -99,7 +108,7 @@ const AllProducts = () => {
                                             <td>$ {item.price}</td>
                                             <td>{item.quantity}</td>
                                             {/* <td><button onClick={() => handleItemView(item)} className='flex items-center '><FaEye className='text-2xl text-green-500' /></button></td> */}
-                                            <td><button className='cursor-pointer' onClick={() => handleItemEdit(item._id)}><FaEdit className="text-2xl text-primary-c"></FaEdit></button></td>
+                                            <td><button className='cursor-pointer' onClick={() => openModal(item)}><FaEdit className="text-2xl text-primary-c"></FaEdit></button></td>
                                             <td><button className='cursor-pointer' onClick={() => handleDelete(item._id)}><FaTrash className="text-2xl text-red-500"></FaTrash></button></td>
                                         </tr>)
                                     }
@@ -109,15 +118,11 @@ const AllProducts = () => {
                     </div>
             }
 
-            {/* <dialog id="my_modal_1" className="modal">
-                <ItemModal item={viewItem}></ItemModal>
+            <dialog id="my_modal_1" ref={modalRef} className="modal">
+                {/* <ItemModal item={viewItem}></ItemModal> */}
+                <ProductEditModal item = {viewItem}></ProductEditModal>
             </dialog>
-            <dialog id="itemEditModal" className="modal">
-                <ItemEditModal item={viewItem}></ItemEditModal>
-            </dialog>
-            <dialog id="addItemModal" className="modal">
-                <AddItemModal></AddItemModal>
-            </dialog> */}
+
         </div>
     );
 };
