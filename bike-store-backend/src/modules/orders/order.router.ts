@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post(
     '/product',
-    dataValidator(orderValidationSchema),
+    // dataValidator(orderValidationSchema),
     auth(USER_ROLE.customer),
     OrderController.createOrder);
 

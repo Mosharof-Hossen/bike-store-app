@@ -1,7 +1,8 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
 import { addToCart, decreaseQuantityOfItem, ICartItem, removeItemFromCart, totalCartItems } from '../../redux/features/cart/cartSlice';
 import { toast } from 'sonner';
-import { FaTrash } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const cartItems = useAppSelector(totalCartItems);
@@ -100,6 +101,12 @@ const Cart = () => {
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+            <div className='flex justify-between my-10'>
+                <Link to={"/shop"}>
+                    <button className="btn cursor-pointer  rounded bg-[#22292f]  hover:bg-black text-white"><FaArrowLeft></FaArrowLeft> Continue Shopping</button>
+                </Link>
+                <button className="btn cursor-pointer  rounded bg-blue-500  hover:bg-blue-600 text-white">Confirm Order <FaArrowRight></FaArrowRight></button>
             </div>
         </div>
     );

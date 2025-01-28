@@ -1,42 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
-import { bikeServices } from '../product/bike.service';
 import { orderServices } from './order.service';
 import catchAsync from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
+import { UserModel } from '../user/user.model';
 import AppError from '../../errors/AppError';
 
-const createOrder = catchAsync(async (req: Request, res: Response)=> {
-  const { product, quantity, totalPrice } = req.body;
+const createOrder = catchAsync(async (req: Request, res: Response) => {
   const email = req.user.email;
-  console.log(email);
-  if (!email) {
-    throw new AppError(400, "Invalid user")
+  const user = await UserModel.findOne({ email: email });
+  if (!user) {
+    throw new AppError(400, "Login Again")
   }
 
-  const bike = await bikeServices.getSingleBike(product);
-  console.log(bike);
 
-  if (!bike) {
-    throw new AppError(400, "Bike is not founded.")
-  }
-  if (bike?.quantity < quantity) {
-    throw new AppError(400, `Insufficient stock. Only ${bike.quantity} item(s) left.`)
-  }
-
-  bike.quantity = bike.quantity - quantity;
-  if (bike.quantity === 0) {
-    bike.inStock = false;
-  }
-  await bike.save();
-
-  const order = await orderServices.createOrder({
-    email,
-    product,
-    quantity,
-    totalPrice,
-  });
-
+  const order = await orderServices.createOrder(user, req.body);
 
   sendResponse(res, {
     data: order,
@@ -45,6 +23,8 @@ const createOrder = catchAsync(async (req: Request, res: Response)=> {
     success: true,
     meta: null
   })
+
+
 
 })
 

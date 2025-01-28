@@ -1,9 +1,45 @@
-import { TOrder } from './order.interface';
+import Bike from '../product/bike.model';
+import { TUser } from '../user/user.interface';
+import { TOrderItem } from './order.interface';
 import { Order } from './order.model';
 
-const createOrder = async (orderData: TOrder) => {
-  const response = await Order.create(orderData);
-  return response;
+const createOrder = async (user: TUser, payload: TOrderItem) => {
+  const items = payload.items
+  console.log(items);
+
+
+  items.forEach(async (item) => {
+    await Bike.updateOne(
+      { _id: item.product },
+      { $inc: { quantity: -item.quantity } }
+    );
+  });
+
+
+  // const { product, quantity, totalPrice } = req.body;
+  // const email = req.user.email;
+  // console.log(email);
+  // if (!email) {
+  //   throw new AppError(400, "Invalid user")
+  // }
+
+  // const bike = await bikeServices.getSingleBike(product);
+  // console.log(bike);
+
+  // if (!bike) {
+  //   throw new AppError(400, "Bike is not founded.")
+  // }
+  // if (bike?.quantity < quantity) {
+  //   throw new AppError(400, `Insufficient stock. Only ${bike.quantity} item(s) left.`)
+  // }
+
+  // bike.quantity = bike.quantity - quantity;
+  // if (bike.quantity === 0) {
+  //   bike.inStock = false;
+  // }
+  // await bike.save();
+  // const response = await Order.create(payload);
+  // return response;
 };
 
 const totalRevenue = async () => {

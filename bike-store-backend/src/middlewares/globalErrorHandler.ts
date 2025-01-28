@@ -75,7 +75,7 @@ const globalErrorHandler = (
     message: message,
     errorSources,
     stack: null,
-    // err
+    err
   })
 
 
