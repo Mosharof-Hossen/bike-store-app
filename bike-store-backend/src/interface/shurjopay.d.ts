@@ -99,7 +99,7 @@ declare module "shurjopay" {
     }
 
     type Callback<T> = (response: T) => void;
-    type ErrorHandler = (error: any) => void;
+    type ErrorHandler = (error: unknown) => void;
 
     class Shurjopay {
         data: { sp_token?: TokenDetails };

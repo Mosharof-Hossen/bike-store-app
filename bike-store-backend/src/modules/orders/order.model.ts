@@ -34,6 +34,10 @@ const orderSchema = new Schema<TOrder>(
       enum: ["Pending", "Paid", "Shipped", "Completed", "Cancelled"],
       default: "Pending",
     },
+    verified: {
+      type: Boolean,
+      default: false
+    },
     transaction: {
       id: String,
       transactionStatus: String,

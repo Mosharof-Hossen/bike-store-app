@@ -9,13 +9,18 @@ const router = express.Router();
 
 router.post(
     '/product',
-    // dataValidator(orderValidationSchema),
+    dataValidator(orderValidationSchema),
     auth(USER_ROLE.customer),
     OrderController.createOrder);
 
+router.get(
+    '/verify/:order_id',
+    auth(USER_ROLE.admin),
+    OrderController.verifyPayment);
+
 
 router.get(
-    '/product/revenue', 
+    '/product/revenue',
     auth(USER_ROLE.admin),
     OrderController.findRevenue
 );

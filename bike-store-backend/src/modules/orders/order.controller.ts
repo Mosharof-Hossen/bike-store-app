@@ -12,8 +12,6 @@ const createOrder = catchAsync(async (req: Request, res: Response) => {
   if (!user) {
     throw new AppError(400, "Login Again")
   }
-
-
   const order = await orderServices.createOrder(user, req.body, req.ip!);
 
   sendResponse(res, {
@@ -23,10 +21,19 @@ const createOrder = catchAsync(async (req: Request, res: Response) => {
     success: true,
     meta: null
   })
-
-
-
 })
+
+const verifyPayment = catchAsync(async (req, res) => {
+  const order = await orderServices.verifyPayment(req.params.order_id as string);
+
+  sendResponse(res, {
+    data: order,
+    message: "Order verified successfully",
+    statusCode: 200,
+    success: true,
+    meta: null
+  })
+});
 
 
 const findRevenue = catchAsync(async (req: Request, res: Response) => {
@@ -45,4 +52,5 @@ const findRevenue = catchAsync(async (req: Request, res: Response) => {
 export const OrderController = {
   createOrder,
   findRevenue,
+  verifyPayment
 };
