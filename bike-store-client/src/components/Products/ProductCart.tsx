@@ -1,10 +1,13 @@
+import { toast } from 'sonner';
 import { addToCart } from '../../redux/features/cart/cartSlice';
-import { useAppDispatch } from '../../redux/hook';
+import { useAppDispatch,  } from '../../redux/hook';
 import { TProduct } from '../../types/productsType';
 
 const ProductCart = ({ item }: { item: TProduct }) => {
     const dispatch = useAppDispatch()
-    const { _id, name, price,quantity, image } = item;
+    const { _id, name, price, quantity, image } = item;
+    
+   
 
     const handleAddCart = () => {
         dispatch(addToCart({
@@ -15,6 +18,7 @@ const ProductCart = ({ item }: { item: TProduct }) => {
             InStock: quantity,
             image: image,
         }))
+        toast.success("Product Added To Cart")
     }
 
     return (

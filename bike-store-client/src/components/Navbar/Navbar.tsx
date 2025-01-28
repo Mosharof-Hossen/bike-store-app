@@ -12,7 +12,7 @@ const Navbar = () => {
     const token = useAppSelector(useCurrentToken);
     const dispatch = useAppDispatch();
     const cartItems = useAppSelector(totalCartItems);
-    console.log({cartItems});
+    console.log({ cartItems });
     let user;
     if (token) {
         user = verifyToken(token) as TUser;
@@ -71,22 +71,23 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {
-                        user?.email ?
-                            <div className='flex items-center space-x-5'>
-                                <Link to={"user/dashboard/cart"}>
-                                    <div className="indicator">
-                                        <span className="indicator-item text-[#22292f] font-extrabold">{cartItems.totalQuantity}</span>
-                                        <div className=" grid w-10 h-5 place-items-center cursor-pointer">
-                                            <FaShoppingCart className="text-2xl" />
-                                        </div>
-                                    </div>
-                                </Link>
-                                <button onClick={() => dispatch(logout())} className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg">Logout <FiLogOut /> </button>
+                    <div className='flex items-center space-x-5'>
+                        <Link to={"user/cart"}>
+                            <div className="indicator">
+                                <span className="indicator-item text-[#22292f] font-extrabold">{cartItems.totalQuantity}</span>
+                                <div className=" grid w-10 h-5 place-items-center cursor-pointer">
+                                    <FaShoppingCart className="text-2xl" />
+                                </div>
                             </div>
-                            :
-                            <Link to={"/sign-up"}><button className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg"><FaRegUser /> Join Us</button></Link>
-                    }
+                        </Link>
+                        {
+                            user?.email ?
+
+                                <button onClick={() => dispatch(logout())} className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg">Logout <FiLogOut /> </button>
+                                :
+                                <Link to={"/sign-up"}><button className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg"><FaRegUser /> Join Us</button></Link>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

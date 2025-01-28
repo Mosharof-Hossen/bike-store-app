@@ -31,12 +31,13 @@ const cartSlice = createSlice({
             const isExistItem = state.items.find((item) => item.product === action.payload.product)
             if (isExistItem) {
                 isExistItem.quantity += 1;
+                state.totalQuantity += 1;
+                state.totalPrice += action.payload.price;
             } else {
                 state.items.push(action.payload);
+                state.totalQuantity += 1;
+                state.totalPrice += action.payload.price * action.payload.quantity;
             }
-
-            state.totalQuantity += action.payload.quantity;
-            state.totalPrice += action.payload.price * action.payload.quantity;
         },
 
 

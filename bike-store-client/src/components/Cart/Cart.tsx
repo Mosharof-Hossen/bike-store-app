@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
-import { useAppSelector } from '../../redux/hook';
-import { totalCartItems } from '../../redux/features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
+import { addToCart, ICartItem, totalCartItems } from '../../redux/features/cart/cartSlice';
+import { toast } from 'sonner';
 
 const Cart = () => {
     const cartItems = useAppSelector(totalCartItems);
+    const dispatch = useAppDispatch()
     console.log({ cartItems });
-    const [quantity, setQuantity] = useState(1);
 
-    const increaseQuantity = () => setQuantity((prev) => prev + 1);
-    const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+    const increaseQuantity = (item: ICartItem) => {
+        if (item.InStock > item.quantity) {
+            dispatch(addToCart(item))
+        } else {
+            toast.error("Out of Stock")
+        }
+    };
+    const decreaseQuantity = (item: ICartItem) => {
+        if (item.quantity > 1) {
+            dispatch(addToCart(item))
+        }
+    }
 
-    
+
 
     return (
         <div className='p-10'>
@@ -46,7 +56,7 @@ const Cart = () => {
                                 <td>
                                     <div className="flex items-center gap-1  p-2 rounded-lg w-32 bg-white ">
                                         <button
-                                            onClick={decreaseQuantity}
+                                            onClick={() => decreaseQuantity(item)}
                                             className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300 transition"
                                         >
                                             −
@@ -54,17 +64,19 @@ const Cart = () => {
                                         <input
                                             type="text"
                                             className="w-10 text-center border-none outline-none bg-transparent"
-                                            value={quantity}
+                                            value={item.quantity}
                                             readOnly
                                         />
                                         <button
-                                            onClick={increaseQuantity}
+                                            onClick={() => increaseQuantity(item)}
                                             className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300 transition"
                                         >
                                             +
                                         </button>
                                     </div>
                                 </td>
+                                <td>${item.price}</td>
+                                <td>${item.price * item.quantity}</td>
 
                                 {/* <td><button onClick={() => handleItemView(item)} className='flex items-center '><FaEye className='text-2xl text-green-500' /></button></td> */}
                                 {/* <td><button className='cursor-pointer' onClick={() => openModal(item)}><FaEdit className="text-2xl text-primary-c"></FaEdit></button></td>

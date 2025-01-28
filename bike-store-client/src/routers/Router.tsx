@@ -44,8 +44,8 @@ const router = createBrowserRouter([
                 element: <Login></Login>
             },
             {
-                path: "/user/dashboard/cart",
-                element: <PrivateRouter role="customer"><Cart></Cart></PrivateRouter>
+                path: "/user/cart",
+                element: <Cart></Cart>
             },
         ]
     },
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/admin/dashboard/create-bike",
-                element: <PrivateRouter role = "admin"><CreateBike></CreateBike></PrivateRouter>
+                element: <PrivateRouter role="admin"><CreateBike></CreateBike></PrivateRouter>
             },
             {
                 path: "/admin/dashboard/manage-order",
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
                 path: "/user/dashboard/update-password",
                 element: <PrivateRouter role="customer"><UpdatePassword></UpdatePassword></PrivateRouter>
             },
-            
+
         ]
     },
 
