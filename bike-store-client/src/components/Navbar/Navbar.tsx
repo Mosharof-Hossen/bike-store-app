@@ -6,10 +6,13 @@ import { useAppDispatch, useAppSelector } from '../../redux/hook';
 import { logout, TUser, useCurrentToken } from '../../redux/features/Auth/authSlice';
 import { verifyToken } from '../../utils/verifytoken';
 import { FiLogOut } from 'react-icons/fi';
+import { totalCartItems } from '../../redux/features/cart/cartSlice';
 
 const Navbar = () => {
     const token = useAppSelector(useCurrentToken);
     const dispatch = useAppDispatch();
+    const cartItems = useAppSelector(totalCartItems);
+    console.log({cartItems});
     let user;
     if (token) {
         user = verifyToken(token) as TUser;
@@ -73,7 +76,7 @@ const Navbar = () => {
                             <div className='flex items-center space-x-5'>
                                 <Link to={"user/dashboard/cart"}>
                                     <div className="indicator">
-                                        <span className="indicator-item text-[#22292f] font-extrabold">{5}</span>
+                                        <span className="indicator-item text-[#22292f] font-extrabold">{cartItems.totalQuantity}</span>
                                         <div className=" grid w-10 h-5 place-items-center cursor-pointer">
                                             <FaShoppingCart className="text-2xl" />
                                         </div>
