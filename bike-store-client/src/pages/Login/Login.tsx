@@ -25,9 +25,7 @@ const Login = () => {
         }
     })
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        console.log(errors)
         const res = await login(data) as TResponse<TUserLoginResponse>;
-        console.log(res);
         let user;
 
         try {

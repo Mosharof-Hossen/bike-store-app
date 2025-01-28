@@ -64,9 +64,17 @@ const productApi = baseApi.injectEndpoints({
             invalidatesTags: ["users"]
         }),
 
+        updatePassword: builder.mutation({
+            query: (userInfo) => ({
+                url: "/user/password-change",
+                method: "PUT",
+                body: userInfo
+            })
+        }),
+
 
     })
 })
 
 
-export const { useUserStatusChangeMutation, useGetSingleUserQuery, useGetAllUsersQuery, useDeleteProductMutation } = productApi
+export const { useUpdatePasswordMutation, useUserStatusChangeMutation, useGetSingleUserQuery, useGetAllUsersQuery, useDeleteProductMutation } = productApi
