@@ -1,6 +1,5 @@
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import CustomSpinner from '../../components/Spinner/CustomSpinner';
-import moment from "moment"
 import { TUserOwnOrder } from '../../types/order.type';
 import { useGetUserOwnOrdersQuery } from '../../redux/features/Order/Order.api';
 import { Link } from 'react-router-dom';
