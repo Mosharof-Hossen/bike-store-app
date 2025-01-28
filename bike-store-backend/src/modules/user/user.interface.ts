@@ -10,3 +10,8 @@ export type TUser = {
 export type TUserStatus = {
     block: boolean
 }
+
+export type TChangePassword = {
+    newPassword: string;
+    oldPassword: string
+}

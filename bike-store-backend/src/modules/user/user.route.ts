@@ -31,4 +31,10 @@ router.get(
     UserControllers.getSingleUser
 )
 
+router.put(
+    "/password-change",
+    auth(USER_ROLE.admin, USER_ROLE.customer),
+    UserControllers.passwordChange
+)
+
 export const userRouter = router;

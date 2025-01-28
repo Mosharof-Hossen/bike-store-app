@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
     const { data, isFetching } = useGetUserOwnOrdersQuery(undefined);
-    console.log({ data });
+    
     return (
         <div className='px-10 space-y-10'>
             <SectionTitle heading={"Track Your Orders"} subHeading={"Check your order details, status, and delivery updates easily."}></SectionTitle>

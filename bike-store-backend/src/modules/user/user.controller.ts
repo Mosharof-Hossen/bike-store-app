@@ -41,8 +41,18 @@ const getSingleUser = catchAsync(async (req, res) => {
         success: true,
     })
 })
+const passwordChange = catchAsync(async (req, res) => {
+    const userEmail = req.user.email;
+    const result = await UserServices.changePasswordIntoDB(userEmail, req.body);
+    sendResponse(res, {
+        data: result,
+        message: "Successfully Password Change",
+        statusCode: 200,
+        success: true,
+    })
+})
 
 
 export const UserControllers = {
-    userRegistration, userStatusChange, getAllUser, getSingleUser
+    userRegistration, userStatusChange, getAllUser, getSingleUser, passwordChange
 }
