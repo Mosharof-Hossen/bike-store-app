@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import logo from "../../assets/logo.png"
 import "./Navbar.css"
-import { FaRegUser } from 'react-icons/fa';
+import { FaRegUser, FaShoppingCart } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
 import { logout, TUser, useCurrentToken } from '../../redux/features/Auth/authSlice';
 import { verifyToken } from '../../utils/verifytoken';
@@ -21,11 +21,11 @@ const Navbar = () => {
         <NavLink to={"/contact"} className={"text-[#22292f] lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>Contact</li></NavLink>
         {
             user?.role === "admin" &&
-                <NavLink to={"/admin/dashboard"} className={"text-[#22292f] lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>Dashboard</li></NavLink>
+            <NavLink to={"/admin/dashboard"} className={"text-[#22292f] lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>Dashboard</li></NavLink>
         }
         {
             user?.role === "customer" &&
-                <NavLink to={"/user/dashboard"} className={"text-[#22292f] lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>Dashboard</li></NavLink>
+            <NavLink to={"/user/dashboard"} className={"text-[#22292f] lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>Dashboard</li></NavLink>
         }
 
     </>
@@ -60,7 +60,7 @@ const Navbar = () => {
                             <img src={logo} alt="" className="w-12 h-fit" />
                         </Link>
                     </div>
-                   
+
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -70,7 +70,17 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user?.email ?
-                            <button onClick={()=>dispatch(logout())} className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg">Logout <FiLogOut /> </button>
+                            <div className='flex items-center space-x-5'>
+                                <Link to={"user/dashboard/cart"}>
+                                    <div className="indicator">
+                                        <span className="indicator-item text-[#22292f] font-extrabold">{5}</span>
+                                        <div className=" grid w-10 h-5 place-items-center cursor-pointer">
+                                            <FaShoppingCart className="text-2xl" />
+                                        </div>
+                                    </div>
+                                </Link>
+                                <button onClick={() => dispatch(logout())} className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg">Logout <FiLogOut /> </button>
+                            </div>
                             :
                             <Link to={"/sign-up"}><button className="btn bg-[#22292f] text-white hover:bg-black flex items-center gap-1 text-lg"><FaRegUser /> Join Us</button></Link>
                     }

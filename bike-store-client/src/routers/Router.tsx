@@ -16,6 +16,7 @@ import MyOrders from "../pages/User/MyOrders";
 import PaymentHistory from "../pages/User/PaymentHistory";
 import UpdatePassword from "../pages/User/UpdatePassword";
 import PrivateRouter from "./PrivateRouter";
+import Cart from "../components/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login></Login>
+            },
+            {
+                path: "/user/dashboard/cart",
+                element: <PrivateRouter role="customer"><Cart></Cart></PrivateRouter>
             },
         ]
     },
@@ -92,6 +97,7 @@ const router = createBrowserRouter([
                 path: "/user/dashboard/update-password",
                 element: <PrivateRouter role="customer"><UpdatePassword></UpdatePassword></PrivateRouter>
             },
+            
         ]
     },
 
