@@ -12,7 +12,6 @@ const Navbar = () => {
     const token = useAppSelector(useCurrentToken);
     const dispatch = useAppDispatch();
     const cartItems = useAppSelector(totalCartItems);
-    console.log({ cartItems });
     let user;
     if (token) {
         user = verifyToken(token) as TUser;

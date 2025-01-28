@@ -48,7 +48,7 @@ const createOrder = async (user: TUser, payload: TOrderItem, client_ip: string) 
     });
   }
 
-  return payment;
+  return payment.checkout_url;
 
 };
 

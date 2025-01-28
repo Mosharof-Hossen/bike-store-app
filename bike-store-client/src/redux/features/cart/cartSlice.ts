@@ -39,7 +39,6 @@ const cartSlice = createSlice({
             }
         },
         decreaseQuantityOfItem(state, action: PayloadAction<ICartItem>) {
-            console.log(action);
             const isExistItem = state.items.find((item) => item.product === action.payload.product)
             if (isExistItem) {
                 isExistItem.quantity -= 1;
@@ -57,9 +56,6 @@ const cartSlice = createSlice({
                 state.items = state.items.filter((item) => item.product !== action.payload)
             }
         },
-
-
-
 
         clearCart(state) {
             state.items = [];

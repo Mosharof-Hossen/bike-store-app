@@ -1,14 +1,25 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
-import { addToCart, decreaseQuantityOfItem, ICartItem, removeItemFromCart, totalCartItems } from '../../redux/features/cart/cartSlice';
+import { addToCart, clearCart, decreaseQuantityOfItem, ICartItem, removeItemFromCart, totalCartItems } from '../../redux/features/cart/cartSlice';
 import { toast } from 'sonner';
 import { FaArrowLeft, FaArrowRight, FaTrash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { verifyToken } from '../../utils/verifytoken';
+import { TUser, useCurrentToken } from '../../redux/features/Auth/authSlice';
+import { useCreateOrderMutation } from '../../redux/features/Order/Order';
+import { useEffect } from 'react';
 
 const Cart = () => {
     const cartItems = useAppSelector(totalCartItems);
     const dispatch = useAppDispatch()
-    console.log({ cartItems });
+    const token = useAppSelector(useCurrentToken);
+    const navigate = useNavigate();
+    const [createOrder, { isLoading, isSuccess, data, isError, error }] = useCreateOrderMutation()
 
+
+    let user: TUser;
+    if (token) {
+        user = verifyToken(token) as TUser;
+    }
     const increaseQuantity = (item: ICartItem) => {
         if (item.InStock > item.quantity) {
             dispatch(addToCart(item))
@@ -25,6 +36,35 @@ const Cart = () => {
         dispatch(removeItemFromCart(id));
     }
 
+    const handleCheckout = async () => {
+        if (!user) {
+            navigate("/login")
+        }
+        const orderData = {
+            ...cartItems,
+            items: cartItems.items.map((item) => {
+                return { product: item.product, quantity: item.quantity }
+            })
+        }
+       
+        await createOrder(orderData);
+    }
+
+    const toastId = "cart";
+    useEffect(() => {
+        if (isLoading) toast.loading("Processing ...", { id: toastId });
+        if (isSuccess) {
+            toast.success(data?.message, { id: toastId });
+            if (data?.data) {
+                setTimeout(() => {
+                    window.location.href = data.data;
+                    dispatch(clearCart())
+                }, 1000);
+            }
+        }
+
+        if (isError) toast.error(JSON.stringify(error), { id: toastId });
+    }, [data?.data, data?.message, error, isError, isLoading, isSuccess]);
 
     return (
         <div className='p-10'>
@@ -106,7 +146,7 @@ const Cart = () => {
                 <Link to={"/shop"}>
                     <button className="btn cursor-pointer  rounded bg-[#22292f]  hover:bg-black text-white"><FaArrowLeft></FaArrowLeft> Continue Shopping</button>
                 </Link>
-                <button className="btn cursor-pointer  rounded bg-blue-500  hover:bg-blue-600 text-white">Confirm Order <FaArrowRight></FaArrowRight></button>
+                <button onClick={() => handleCheckout()} className="btn cursor-pointer  rounded bg-blue-500  hover:bg-blue-600 text-white">Confirm Order <FaArrowRight></FaArrowRight></button>
             </div>
         </div>
     );
