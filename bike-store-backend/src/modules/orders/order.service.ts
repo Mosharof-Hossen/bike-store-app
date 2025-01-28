@@ -2,8 +2,9 @@ import Bike from '../product/bike.model';
 import { TUser } from '../user/user.interface';
 import { TOrderItem } from './order.interface';
 import { Order } from './order.model';
+import { orderUtils } from './order.utils';
 
-const createOrder = async (user: TUser, payload: TOrderItem) => {
+const createOrder = async (user: TUser, payload: TOrderItem, client_ip: string) => {
   const items = payload.items
   console.log(items);
 
@@ -16,39 +17,43 @@ const createOrder = async (user: TUser, payload: TOrderItem) => {
   });
 
 
-  const response = await Order.create({
+  let order = await Order.create({
     user: user._id,
     email: user.email,
     products: items,
     totalPrice: payload.totalPrice
   });
-  return response;
 
 
-  // const { product, quantity, totalPrice } = req.body;
-  // const email = req.user.email;
-  // console.log(email);
-  // if (!email) {
-  //   throw new AppError(400, "Invalid user")
-  // }
+  // payment integration
+  const shurjopayPayload = {
+    amount: payload.totalPrice,
+    order_id: order._id,
+    currency: "BDT",
+    customer_name: user.name,
+    customer_address: "N/A",
+    customer_email: user.email,
+    customer_phone: "N/A",
+    customer_city: "N/A",
+    client_ip: client_ip || "127.0.0.1",
+    
+  };
 
-  // const bike = await bikeServices.getSingleBike(product);
-  // console.log(bike);
+  console.log({shurjopayPayload});
 
-  // if (!bike) {
-  //   throw new AppError(400, "Bike is not founded.")
-  // }
-  // if (bike?.quantity < quantity) {
-  //   throw new AppError(400, `Insufficient stock. Only ${bike.quantity} item(s) left.`)
-  // }
+  const payment = await orderUtils.makePaymentAsync(shurjopayPayload);
 
-  // bike.quantity = bike.quantity - quantity;
-  // if (bike.quantity === 0) {
-  //   bike.inStock = false;
-  // }
-  // await bike.save();
-  // const response = await Order.create(payload);
-  // return response;
+  if (payment?.transactionStatus) {
+    order = await order.updateOne({
+      transaction: {
+        id: payment.sp_order_id,
+        transactionStatus: payment.transactionStatus,
+      },
+    });
+  }
+
+  return payment;
+
 };
 
 const totalRevenue = async () => {
