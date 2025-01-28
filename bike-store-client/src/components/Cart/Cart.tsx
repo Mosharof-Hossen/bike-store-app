@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
-import { addToCart, ICartItem, totalCartItems } from '../../redux/features/cart/cartSlice';
+import { addToCart, decreaseQuantityOfItem, ICartItem, removeItemFromCart, totalCartItems } from '../../redux/features/cart/cartSlice';
 import { toast } from 'sonner';
+import { FaTrash } from 'react-icons/fa';
 
 const Cart = () => {
     const cartItems = useAppSelector(totalCartItems);
@@ -16,15 +17,17 @@ const Cart = () => {
     };
     const decreaseQuantity = (item: ICartItem) => {
         if (item.quantity > 1) {
-            dispatch(addToCart(item))
+            dispatch(decreaseQuantityOfItem(item))
         }
     }
-
+    const removeItem = (id: string) => {
+        dispatch(removeItemFromCart(id));
+    }
 
 
     return (
         <div className='p-10'>
-            <h1 className='text-[#22292f] font-bold text-2xl'>Shopping Cart</h1>
+            <h1 className='text-[#22292f] font-bold text-2xl py-5'>Shopping Cart</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}
@@ -36,7 +39,7 @@ const Cart = () => {
                             <th>Quantity</th>
                             <th>Unit Price</th>
                             <th>Total</th>
-
+                            <th>Delete</th>
 
                         </tr>
                     </thead>
@@ -77,6 +80,8 @@ const Cart = () => {
                                 </td>
                                 <td>${item.price}</td>
                                 <td>${item.price * item.quantity}</td>
+                                <td><button className='cursor-pointer' onClick={() => removeItem(item.product)}><FaTrash className="text-2xl text-red-500"></FaTrash></button></td>
+
 
                                 {/* <td><button onClick={() => handleItemView(item)} className='flex items-center '><FaEye className='text-2xl text-green-500' /></button></td> */}
                                 {/* <td><button className='cursor-pointer' onClick={() => openModal(item)}><FaEdit className="text-2xl text-primary-c"></FaEdit></button></td>
@@ -84,6 +89,16 @@ const Cart = () => {
                             </tr>)
                         }
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th className='text-xl text-[#22292f]'>Total Quantity:</th>
+                            <th className='text-xl text-[#22292f]'>{cartItems.totalQuantity}</th>
+                            <th className='text-xl text-[#22292f]'>Total Price:</th>
+                            <th className='text-xl text-[#22292f]'>${cartItems.totalPrice}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

@@ -27,7 +27,6 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart(state, action: PayloadAction<ICartItem>) {
-            console.log(action);
             const isExistItem = state.items.find((item) => item.product === action.payload.product)
             if (isExistItem) {
                 isExistItem.quantity += 1;
@@ -39,6 +38,27 @@ const cartSlice = createSlice({
                 state.totalPrice += action.payload.price * action.payload.quantity;
             }
         },
+        decreaseQuantityOfItem(state, action: PayloadAction<ICartItem>) {
+            console.log(action);
+            const isExistItem = state.items.find((item) => item.product === action.payload.product)
+            if (isExistItem) {
+                isExistItem.quantity -= 1;
+                state.totalQuantity -= 1;
+                state.totalPrice -= action.payload.price;
+            }
+        },
+
+        removeItemFromCart(state, action: PayloadAction<string>) {
+            console.log(action);
+            const isExistItem = state.items.find((item) => item.product === action.payload)
+            if (isExistItem) {
+                state.totalQuantity -= isExistItem.quantity;
+                state.totalPrice -= isExistItem.quantity * isExistItem.price;
+                state.items = state.items.filter((item) => item.product !== action.payload)
+            }
+        },
+
+
 
 
         clearCart(state) {
@@ -55,5 +75,5 @@ const cartSlice = createSlice({
 
 export const totalCartItems = (state: RootState) => state.cart
 
-export const { addToCart, clearCart } = cartSlice.actions
+export const { addToCart, clearCart, decreaseQuantityOfItem, removeItemFromCart } = cartSlice.actions
 export const cartReducer = cartSlice.reducer;
