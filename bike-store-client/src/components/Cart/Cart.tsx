@@ -5,8 +5,8 @@ import { FaArrowLeft, FaArrowRight, FaTrash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { verifyToken } from '../../utils/verifytoken';
 import { TUser, useCurrentToken } from '../../redux/features/Auth/authSlice';
-import { useCreateOrderMutation } from '../../redux/features/Order/Order';
 import { useEffect } from 'react';
+import { useCreateOrderMutation } from '../../redux/features/Order/Order.api';
 
 const Cart = () => {
     const cartItems = useAppSelector(totalCartItems);
@@ -52,7 +52,6 @@ const Cart = () => {
 
     const toastId = "cart";
     useEffect(() => {
-        if (isLoading) toast.loading("Processing ...", { id: toastId });
         if (isSuccess) {
             toast.success(data?.message, { id: toastId });
             if (data?.data) {

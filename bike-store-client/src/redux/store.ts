@@ -6,9 +6,10 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import { cartReducer } from './features/cart/cartSlice'
 
 const persistConfig = {
-  key: 'auth',
+  key: "root",
   storage,
-}
+  whitelist: ["auth", "cart"], // Only persist auth & cart
+};
 
 export const rootReducer = combineReducers({
   [baseApi.reducerPath]: baseApi.reducer,
