@@ -6,8 +6,6 @@ import { orderUtils } from './order.utils';
 
 const createOrder = async (user: TUser, payload: TOrderItem, client_ip: string) => {
   const items = payload.items
-  console.log(items);
-
 
   items.forEach(async (item) => {
     await Bike.updateOne(
@@ -39,8 +37,6 @@ const createOrder = async (user: TUser, payload: TOrderItem, client_ip: string) 
 
   };
 
-  console.log({ shurjopayPayload });
-
   const payment = await orderUtils.makePaymentAsync(shurjopayPayload);
 
   if (payment?.transactionStatus) {
@@ -58,9 +54,7 @@ const createOrder = async (user: TUser, payload: TOrderItem, client_ip: string) 
 
 
 const verifyPayment = async (order_id: string) => {
-  console.log({order_id});
   const verifiedPayment = await orderUtils.verifyPaymentAsync(order_id);
-// return verifiedPayment
   if (verifiedPayment.length) {
     await Order.findOneAndUpdate(
       {
@@ -87,6 +81,11 @@ const verifyPayment = async (order_id: string) => {
 
   return verifiedPayment;
 };
+
+const getAllOrders = async () => {
+  const res = await Order.find();
+  return res;
+}
 
 const totalRevenue = async () => {
   // const response = await Order.aggregate([
@@ -129,5 +128,6 @@ const totalRevenue = async () => {
 export const orderServices = {
   createOrder,
   totalRevenue,
-  verifyPayment
+  verifyPayment,
+  getAllOrders
 };

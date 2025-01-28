@@ -18,6 +18,12 @@ router.get(
     auth(USER_ROLE.admin),
     OrderController.verifyPayment);
 
+router.get(
+    '/',
+    auth(USER_ROLE.admin),
+    OrderController.getAllOrders
+);
+
 
 router.get(
     '/product/revenue',

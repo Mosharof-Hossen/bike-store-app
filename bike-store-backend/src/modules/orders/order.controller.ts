@@ -46,11 +46,23 @@ const findRevenue = catchAsync(async (req: Request, res: Response) => {
     success: true,
     meta: null
   })
+})
 
+const getAllOrders = catchAsync(async (req: Request, res: Response) => {
+  const result = await orderServices.getAllOrders();
+
+  sendResponse(res, {
+    data: result,
+    message: 'All Orders',
+    statusCode: 200,
+    success: true,
+    meta: null
+  })
 })
 
 export const OrderController = {
   createOrder,
   findRevenue,
-  verifyPayment
+  verifyPayment,
+  getAllOrders
 };
