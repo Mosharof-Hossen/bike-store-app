@@ -59,10 +59,23 @@ const getAllOrders = catchAsync(async (req: Request, res: Response) => {
     meta: null
   })
 })
+const getAllOrdersOfUser = catchAsync(async (req: Request, res: Response) => {
+  const email = req.user.email;
+  const result = await orderServices.getAllOrderOfUser(email);
+
+  sendResponse(res, {
+    data: result,
+    message: 'All Orders Of Customer',
+    statusCode: 200,
+    success: true,
+    meta: null
+  })
+})
 
 export const OrderController = {
   createOrder,
   findRevenue,
   verifyPayment,
-  getAllOrders
+  getAllOrders,
+  getAllOrdersOfUser
 };

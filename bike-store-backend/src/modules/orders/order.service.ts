@@ -86,6 +86,10 @@ const getAllOrders = async () => {
   const res = await Order.find();
   return res;
 }
+const getAllOrderOfUser = async (email: string) => {
+  const res = await Order.find({ email: email });
+  return res;
+}
 
 const totalRevenue = async () => {
   // const response = await Order.aggregate([
@@ -129,5 +133,6 @@ export const orderServices = {
   createOrder,
   totalRevenue,
   verifyPayment,
-  getAllOrders
+  getAllOrders,
+  getAllOrderOfUser
 };

@@ -23,6 +23,11 @@ router.get(
     auth(USER_ROLE.admin),
     OrderController.getAllOrders
 );
+router.get(
+    '/user',
+    auth(USER_ROLE.customer),
+    OrderController.getAllOrdersOfUser
+);
 
 
 router.get(
