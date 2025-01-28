@@ -16,6 +16,15 @@ const createOrder = async (user: TUser, payload: TOrderItem) => {
   });
 
 
+  const response = await Order.create({
+    user: user._id,
+    email: user.email,
+    products: items,
+    totalPrice: payload.totalPrice
+  });
+  return response;
+
+
   // const { product, quantity, totalPrice } = req.body;
   // const email = req.user.email;
   // console.log(email);
