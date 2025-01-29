@@ -42,6 +42,15 @@ const orderApi = baseApi.injectEndpoints({
             invalidatesTags: ["allOrder"]
         }),
 
+        updateOrderStatus: builder.mutation({
+            query: (args) => ({
+                url: `/order/status-update/${args._id}`,
+                method: "POST",
+                body: { status: args.status }
+            }),
+            invalidatesTags: ["allOrder"]
+        }),
+
 
     }),
 });
@@ -50,5 +59,6 @@ export const {
     useCreateOrderMutation,
     useVerifyOrderMutation,
     useGetUserOwnOrdersQuery,
-    useGetAllOrdersQuery
+    useGetAllOrdersQuery,
+    useUpdateOrderStatusMutation
 } = orderApi;

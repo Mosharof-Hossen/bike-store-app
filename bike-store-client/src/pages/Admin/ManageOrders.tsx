@@ -1,4 +1,4 @@
-import { useGetAllOrdersQuery, useVerifyOrderMutation } from '../../redux/features/Order/Order.api';
+import { useGetAllOrdersQuery, useUpdateOrderStatusMutation, useVerifyOrderMutation } from '../../redux/features/Order/Order.api';
 import CustomSpinner from '../../components/Spinner/CustomSpinner';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { toast } from 'sonner';
@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 const ManageOrders = () => {
     const { data, isFetching } = useGetAllOrdersQuery(undefined);
     const [verifyOrder] = useVerifyOrderMutation();
+    const [updateOrderStatus] = useUpdateOrderStatusMutation();
     console.log(data?.data);
 
     const handleVerifyPayment = async (id: string) => {
@@ -19,8 +20,15 @@ const ManageOrders = () => {
 
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>, _id: string) => {
+    const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>, _id: string) => {
         const status = e.target.value;
+        const updateData = {
+            status, _id
+        }
+        const res = await updateOrderStatus(updateData);
+        if (res.data) {
+            toast.success("Order Status Done")
+        }
         console.log({ status, _id });
     }
     return (
