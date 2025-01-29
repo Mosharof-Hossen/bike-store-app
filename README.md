@@ -1,6 +1,6 @@
 # Project Name : BikeHut
-# Api Link : [Link](https://bike-store-backend-flax.vercel.app/)
-# Live Site : [Link](https://bike-hut-app.vercel.app/)
+## Api Link : [Link](https://bike-store-backend-flax.vercel.app/)
+## Live Site : [Link](https://bike-hut-app.vercel.app/)
 
 BikeHut is a modern and user-friendly E-commerce platform where buyers can browse, purchase, and review new and used bikes effortlessly. Sellers can also list their bikes, manage orders, and track payments seamlessly.
 
