@@ -21,6 +21,7 @@ const orderApi = baseApi.injectEndpoints({
                     url: `/order`,
                 }
             },
+            providesTags: ["allOrder"]
         }),
 
         createOrder: builder.mutation({
@@ -33,12 +34,12 @@ const orderApi = baseApi.injectEndpoints({
         }),
 
 
-        verifyOrder: builder.query({
-            query: (order_id) => ({
-                url: "/order/verify",
-                params: { order_id },
-                method: "GET",
+        verifyOrder: builder.mutation({
+            query: (id) => ({
+                url: `/order/verify/${id}`,
+                method: "PUT",
             }),
+            invalidatesTags: ["allOrder"]
         }),
 
 
@@ -47,7 +48,7 @@ const orderApi = baseApi.injectEndpoints({
 
 export const {
     useCreateOrderMutation,
-    useVerifyOrderQuery,
+    useVerifyOrderMutation,
     useGetUserOwnOrdersQuery,
     useGetAllOrdersQuery
 } = orderApi;

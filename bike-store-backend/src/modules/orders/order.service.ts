@@ -67,6 +67,7 @@ const verifyPayment = async (order_id: string) => {
         "transaction.transactionStatus": verifiedPayment[0].transaction_status,
         "transaction.method": verifiedPayment[0].method,
         "transaction.date_time": verifiedPayment[0].date_time,
+        verified: true,
         status:
           verifiedPayment[0].bank_status == "Success"
             ? "Paid"

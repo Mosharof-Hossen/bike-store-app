@@ -13,7 +13,7 @@ router.post(
     auth(USER_ROLE.customer),
     OrderController.createOrder);
 
-router.get(
+router.put(
     '/verify/:order_id',
     auth(USER_ROLE.admin),
     OrderController.verifyPayment);

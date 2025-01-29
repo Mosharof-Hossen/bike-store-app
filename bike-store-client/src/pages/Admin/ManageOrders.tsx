@@ -1,12 +1,23 @@
-import { useGetAllOrdersQuery } from '../../redux/features/Order/Order.api';
+import { useGetAllOrdersQuery, useVerifyOrderMutation } from '../../redux/features/Order/Order.api';
 import CustomSpinner from '../../components/Spinner/CustomSpinner';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import { toast } from 'sonner';
 // const allStatus = ["Pending", "Paid", "Shipped", "Completed", "Cancelled"];
 
 
 const ManageOrders = () => {
     const { data, isFetching } = useGetAllOrdersQuery(undefined);
+    const [verifyOrder] = useVerifyOrderMutation();
     console.log(data?.data);
+
+    const handleVerifyPayment = async (id: string) => {
+        console.log(id);
+        const res = await verifyOrder(id);
+        if(res.data){
+            toast.success("Payment Verification Done")
+        }
+        
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>, _id: string) => {
         const status = e.target.value;
@@ -56,7 +67,7 @@ const ManageOrders = () => {
                                             </td>
 
                                             <td>
-                                                <button className={`btn ${item.verified ? "bg-green-300" : "bg-red-300"}`}>Verify</button>
+                                                <button onClick={() => handleVerifyPayment(item.transaction.id)} className={`btn ${item.verified ? "bg-green-300" : "bg-red-300"}`}>Verify</button>
                                             </td>
                                             <td>
                                                 <form>
