@@ -16,7 +16,7 @@ BikeHut is a modern and user-friendly E-commerce platform where buyers can brows
 ---
 Admin Email and Password:
 {
-    "email": "admin@gmail.com",
+    "email": "admin@admin.com",
     "password": "123456"
 }
 
