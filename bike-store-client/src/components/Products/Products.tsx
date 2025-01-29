@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 
 const Products = () => {
-    const { data, isFetching } = useGetAllProductsQuery({inStock:true}) as {
+    const { data, isFetching } = useGetAllProductsQuery({inStock:true,limit:8}) as {
         data?: {
             data?: TProduct[],
             meta?: TMeta;

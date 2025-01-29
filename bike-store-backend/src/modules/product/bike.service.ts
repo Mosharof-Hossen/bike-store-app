@@ -31,6 +31,8 @@ const getSingleBike = async (id: string) => {
   const result = await Bike.findById(id).select('-__v');
   return result;
 };
+
+
 const updateBike = async (id: string, data: object) => {
   const result = await Bike.findByIdAndUpdate(id, data, { new: true }).select(
     '-__v'

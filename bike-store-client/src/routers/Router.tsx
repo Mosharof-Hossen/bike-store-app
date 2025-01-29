@@ -17,6 +17,7 @@ import PaymentHistory from "../pages/User/PaymentHistory";
 import UpdatePassword from "../pages/User/UpdatePassword";
 import PrivateRouter from "./PrivateRouter";
 import Cart from "../components/Cart/Cart";
+import ProductDetails from "../components/Products/ProductDetails";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact></Contact>
+            },
+            {
+                path: "/product-details/:id",
+                element: <ProductDetails></ProductDetails>
             },
             {
                 path: "/sign-up",

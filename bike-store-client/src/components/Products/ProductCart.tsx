@@ -1,13 +1,14 @@
 import { toast } from 'sonner';
 import { addToCart } from '../../redux/features/cart/cartSlice';
-import { useAppDispatch,  } from '../../redux/hook';
+import { useAppDispatch, } from '../../redux/hook';
 import { TProduct } from '../../types/productsType';
+import { Link } from 'react-router-dom';
 
 const ProductCart = ({ item }: { item: TProduct }) => {
     const dispatch = useAppDispatch()
     const { _id, name, price, quantity, image } = item;
-    
-   
+
+
 
     const handleAddCart = () => {
         dispatch(addToCart({
@@ -30,13 +31,20 @@ const ProductCart = ({ item }: { item: TProduct }) => {
             </figure>
             <div className="p-2 md:p-3 space-y-1 flex justify-between flex-col">
                 <div>
-                    <h2 className="card-title text-[#22292f]">{item.name}</h2>
+                    <Link to={`/product-details/${item._id}`}> <h2 className="card-title cursor-pointer hover:underline hover:text-blue-600 text-[#22292f]">{item.name}</h2></Link>
                     <p className='text-sm'>Brand: {item.brand}</p>
                     <p className='text-sm'>Model: {item.category}</p>
                 </div>
                 <div className="card-actions flex flex-col mt-3">
                     <h3 className='text-2xl font-semibold'>${item.price}</h3>
-                    <button onClick={() => handleAddCart()} className="px-2 cursor-pointer w-full py-1 rounded bg-[#22292f] text-sm hover:bg-black text-white">Add To Cart</button>
+                    <button
+                        className={`px-2  w-full py-1 text-white font-semibold rounded-lg transition 
+                                            ${item.inStock ? "bg-[#22292f] cursor-pointer hover:bg-black" : "bg-gray-400 cursor-not-allowed"}`}
+                        disabled={!item.inStock}
+                        onClick={() => handleAddCart()}
+                    >
+                        {item.inStock ? "Add to Cart" : "Out of Stock"}
+                    </button>
                 </div>
             </div>
         </div>
