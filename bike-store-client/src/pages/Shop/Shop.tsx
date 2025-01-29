@@ -23,6 +23,7 @@ const topBikeBrands: string[] = [
     "TVS"
 ];
 
+
 const Shop = () => {
     // const [params, setParams] = useState<TQueryParams[]>([]);
     // const itemPerPage = 2;
@@ -43,7 +44,6 @@ const Shop = () => {
     const searchQuery = watch('search');
     const sort = watch("sort")
     const brand = watch("brand")
-    console.log({brand});
     const queryParams = {
         searchTerm: searchQuery || undefined,
         category: selectedCategories.length > 0 ? selectedCategories.join(',') : undefined,
@@ -53,6 +53,7 @@ const Shop = () => {
         inStock: isStock || undefined,
         page: currentPage || undefined,
     };
+    console.log({queryParams});
     const handlePriceChange = (minPrice: number, maxPrice: number) => {
         setPriceLimit(`${minPrice}-${maxPrice}`)
     }
@@ -64,6 +65,8 @@ const Shop = () => {
         };
         isFetching: boolean;
     };
+
+    console.log({data});
 
 
     return (

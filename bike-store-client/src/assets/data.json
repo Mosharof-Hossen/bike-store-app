@@ -1,0 +1,178 @@
+[
+    {
+        "name": "Honda CBR500R",
+        "brand": "Honda",
+        "model": "Honda",
+        "image": "https://i.ibb.co/0jNgCDYm/5031.jpg",
+        "price": 7200,
+        "category": "Mountain",
+        "description": "The Honda CBR500R is a top-tier sportbike designed for both beginners and experienced riders. It is powered by a 471cc parallel-twin engine that delivers smooth acceleration and a responsive throttle. The bike features an aerodynamic fairing that enhances stability at high speeds, making it ideal for highway rides. Its lightweight chassis and adjustable suspension provide excellent maneuverability. The CBR500R also includes advanced ABS braking for better safety and control. With a comfortable riding position and modern digital display, this bike ensures an enjoyable riding experience. Whether commuting or enjoying weekend rides, the CBR500R is a perfect balance of power and efficiency.",
+        "quantity": 12,
+        "inStock": true
+    },
+    {
+        "name": "Yamaha MT-07",
+        "brand": "Yamaha",
+        "model": "Yamaha",
+        "image": "https://i.ibb.co/rR2LnSN9/10264.jpg",
+        "price": 7500,
+        "category": "Mountain",
+        "description": "The Yamaha MT-07 is a dynamic naked bike known for its agility and strong mid-range power. It is equipped with a 689cc liquid-cooled, parallel-twin engine that offers a thrilling riding experience. The bike's lightweight frame ensures easy handling, making it perfect for city streets and open highways. The upright seating position and wide handlebars provide a comfortable yet sporty feel. Yamaha has integrated a sophisticated fuel injection system that improves efficiency and performance. Additionally, the MT-07 features dual disc brakes with ABS for enhanced safety. Whether you're an urban commuter or a weekend enthusiast, the MT-07 delivers a perfect blend of power and control.",
+        "quantity": 10,
+        "inStock": true
+    },
+    {
+        "name": "Kawasaki Ninja 650",
+        "brand": "Kawasaki",
+        "model": "Kawasaki",
+        "image": "https://i.ibb.co/xSyhnkfp/10691.jpg",
+        "price": 8300,
+        "category": "Road",
+        "description": "The Kawasaki Ninja 650 is a stylish and powerful sportbike designed for riders who seek a balance between performance and comfort. It features a 649cc parallel-twin engine that delivers strong torque and smooth power delivery. The bike’s aggressive styling, LED lighting, and aerodynamic bodywork enhance its appeal. The lightweight chassis and adjustable rear suspension make it easy to handle on both city roads and highways. The Ninja 650 also comes with a TFT display and smartphone connectivity, providing modern convenience. With its refined ergonomics and reliable braking system, this bike is perfect for both new and experienced riders.",
+        "quantity": 8,
+        "inStock": true
+    },
+    {
+        "name": "Ducati Panigale V2",
+        "brand": "Ducati",
+        "model": "Ducati",
+        "image": "https://i.ibb.co/XZcr9bQg/10696.jpg",
+        "price": 18000,
+        "category": "Road",
+        "description": "The Ducati Panigale V2 is a high-performance sportbike designed for speed enthusiasts. It boasts a 955cc Superquadro engine that delivers breathtaking acceleration and power. The sleek bodywork and aerodynamic design ensure stability at high speeds, making it perfect for track and street riding. The bike is equipped with advanced electronics, including traction control, cornering ABS, and multiple riding modes. The fully adjustable suspension and lightweight aluminum frame contribute to its excellent handling. With a state-of-the-art TFT display and premium finishes, the Panigale V2 stands out as a true masterpiece of Italian engineering.",
+        "quantity": 5,
+        "inStock": true
+    },
+    {
+        "name": "Suzuki GSX-R1000",
+        "brand": "Suzuki",
+        "model": "Suzuki",
+        "image": "https://i.ibb.co/YB1N65gS/19091.jpg",
+        "price": 16000,
+        "category": "Hybrid",
+        "description": "The Suzuki GSX-R1000 is a legendary superbike known for its exceptional speed and precision handling. It features a 999cc inline-four engine that provides incredible acceleration and top-end power. The aerodynamic bodywork is designed for reduced drag and enhanced stability. Suzuki’s advanced traction control system and ABS-equipped braking system ensure safety at high speeds. The bike also comes with multiple riding modes, allowing riders to adjust performance based on their preference. The GSX-R1000 is a perfect choice for those who crave adrenaline and superior riding dynamics.",
+        "quantity": 7,
+        "inStock": true
+    },
+    {
+        "name": "BMW S1000RR",
+        "brand": "BMW Motorrad",
+        "model": "BMW Motorrad",
+        "image": "https://i.ibb.co/1tTG9xW9/22150.jpg",
+        "price": 21000,
+        "category": "Hybrid",
+        "description": "The BMW S1000RR is one of the most advanced superbikes on the market. It comes with a 999cc inline-four engine producing impressive horsepower. The bike’s aggressive styling, winglets, and aerodynamic enhancements make it a true speed machine. The electronic package includes dynamic traction control, launch control, and multiple ride modes. A lightweight chassis and fully adjustable suspension contribute to its razor-sharp handling. The S1000RR is ideal for riders who demand both high performance and cutting-edge technology.",
+        "quantity": 6,
+        "inStock": true
+    },
+    {
+        "name": "KTM 390 Duke",
+        "brand": "KTM",
+        "model": "KTM",
+        "image": "https://i.ibb.co/N2JHp489/138430.jpg",
+        "price": 5800,
+        "category": "Electric",
+        "description": "The KTM 390 Duke is a lightweight yet powerful naked bike that excels in agility. It features a 373cc single-cylinder engine delivering a punchy power output. With sharp styling and an advanced TFT display, the 390 Duke stands out in its segment. The ride-by-wire throttle system ensures smooth acceleration, while the WP suspension setup offers superior handling. Ideal for city riding and weekend adventures, the 390 Duke is an exciting choice for new and experienced riders alike.",
+        "quantity": 15,
+        "inStock": true
+    },
+    {
+        "name": "Harley-Davidson Street Bob",
+        "brand": "Harley-Davidson",
+        "model": "Harley-Davidson",
+        "image": "https://i.ibb.co/r2JFvH6z/2148685243.jpg",
+        "price": 14500,
+        "category": "Electric",
+        "description": "The Harley-Davidson Street Bob is a classic cruiser designed for those who love open-Electric adventures. Powered by a Milwaukee-Eight 114 engine, this bike delivers incredible torque and a smooth ride. The stripped-down design with blacked-out styling gives it a raw and rugged look. The Street Bob is equipped with high-performance suspension, ensuring a comfortable ride. Whether cruising on highways or through city streets, this bike embodies the true spirit of Harley-Davidson.",
+        "quantity": 4,
+        "inStock": true
+    },
+    {
+        "name": "Honda CBR500R",
+        "brand": "Honda",
+        "model": "Honda",
+        "image": "https://i.ibb.co/Q3QFSH88/2150810245.jpg",
+        "price": 7200,
+        "category": "Hybrid",
+        "description": "The Honda CBR500R is a top-tier sportbike designed for both beginners and experienced riders. It is powered by a 471cc parallel-twin engine that delivers smooth acceleration and a responsive throttle. The bike features an aerodynamic fairing that enhances stability at high speeds, making it ideal for highway rides. Its lightweight chassis and adjustable suspension provide excellent maneuverability. The CBR500R also includes advanced ABS braking for better safety and control. With a comfortable riding position and modern digital display, this bike ensures an enjoyable riding experience. Whether commuting or enjoying weekend rides, the CBR500R is a perfect balance of power and efficiency.",
+        "quantity": 12,
+        "inStock": true
+    },
+    {
+        "name": "Yamaha MT-07",
+        "brand": "Yamaha",
+        "model": "Yamaha",
+        "image": "https://i.ibb.co/b8h24S6/1046.jpg",
+        "price": 7500,
+        "category": "Hybrid",
+        "description": "The Yamaha MT-07 is a dynamic naked bike known for its agility and strong mid-range power. It is equipped with a 689cc liquid-cooled, parallel-twin engine that offers a thrilling riding experience. The bike's lightweight frame ensures easy handling, making it perfect for city streets and open highways. The upright seating position and wide handlebars provide a comfortable yet sporty feel. Yamaha has integrated a sophisticated fuel injection system that improves efficiency and performance. Additionally, the MT-07 features dual disc brakes with ABS for enhanced safety. Whether you're an urban commuter or a weekend enthusiast, the MT-07 delivers a perfect blend of power and control.",
+        "quantity": 10,
+        "inStock": true
+    },
+    {
+        "name": "Kawasaki Ninja 650",
+        "brand": "Kawasaki",
+        "model": "Kawasaki",
+        "image": "https://i.ibb.co/TBRXFGc5/5048.jpg",
+        "price": 8300,
+        "category": "Road",
+        "description": "The Kawasaki Ninja 650 is a stylish and powerful sportbike designed for riders who seek a balance between performance and comfort. It features a 649cc parallel-twin engine that delivers strong torque and smooth power delivery. The bike’s aggressive styling, LED lighting, and aerodynamic bodywork enhance its appeal. The lightweight chassis and adjustable rear suspension make it easy to handle on both city roads and highways. The Ninja 650 also comes with a TFT display and smartphone connectivity, providing modern convenience. With its refined ergonomics and reliable braking system, this bike is perfect for both new and experienced riders.",
+        "quantity": 8,
+        "inStock": true
+    },
+    {
+        "name": "Ducati Panigale V2",
+        "brand": "Ducati",
+        "model": "Ducati",
+        "image": "https://i.ibb.co/XZV0RmJq/22154.jpg",
+        "price": 18000,
+        "category": "Road",
+        "description": "The Ducati Panigale V2 is a high-performance sportbike designed for speed enthusiasts. It boasts a 955cc Superquadro engine that delivers breathtaking acceleration and power. The sleek bodywork and aerodynamic design ensure stability at high speeds, making it perfect for track and street riding. The bike is equipped with advanced electronics, including traction control, cornering ABS, and multiple riding modes. The fully adjustable suspension and lightweight aluminum frame contribute to its excellent handling. With a state-of-the-art TFT display and premium finishes, the Panigale V2 stands out as a true masterpiece of Italian engineering.",
+        "quantity": 5,
+        "inStock": true
+    },
+    {
+        "name": "Suzuki GSX-R1000",
+        "brand": "Suzuki",
+        "model": "Suzuki",
+        "image": "https://i.ibb.co/N6RtF055/2150620916.jpg",
+        "price": 16000,
+        "category": "Mountain",
+        "description": "The Suzuki GSX-R1000 is a legendary superbike known for its exceptional speed and precision handling. It features a 999cc inline-four engine that provides incredible acceleration and top-end power. The aerodynamic bodywork is designed for reduced drag and enhanced stability. Suzuki’s advanced traction control system and ABS-equipped braking system ensure safety at high speeds. The bike also comes with multiple riding modes, allowing riders to adjust performance based on their preference. The GSX-R1000 is a perfect choice for those who crave adrenaline and superior riding dynamics.",
+        "quantity": 7,
+        "inStock": true
+    },
+    {
+        "name": "BMW S1000RR",
+        "brand": "BMW Motorrad",
+        "model": "BMW Motorrad",
+        "image": "https://i.ibb.co/dscLt3Bb/2150620935.jpg",
+        "price": 21000,
+        "category": "Mountain",
+        "description": "The BMW S1000RR is one of the most advanced superbikes on the market. It comes with a 999cc inline-four engine producing impressive horsepower. The bike’s aggressive styling, winglets, and aerodynamic enhancements make it a true speed machine. The electronic package includes dynamic traction control, launch control, and multiple ride modes. A lightweight chassis and fully adjustable suspension contribute to its razor-sharp handling. The S1000RR is ideal for riders who demand both high performance and cutting-edge technology.",
+        "quantity": 6,
+        "inStock": true
+    },
+    {
+        "name": "KTM 390 Duke",
+        "brand": "KTM",
+        "model": "KTM",
+        "image": "https://i.ibb.co/TxwtZnTd/2530.jpg",
+        "price": 5800,
+        "category": "Electric",
+        "description": "The KTM 390 Duke is a lightweight yet powerful naked bike that excels in agility. It features a 373cc single-cylinder engine delivering a punchy power output. With sharp styling and an advanced TFT display, the 390 Duke stands out in its segment. The ride-by-wire throttle system ensures smooth acceleration, while the WP suspension setup offers superior handling. Ideal for city riding and weekend adventures, the 390 Duke is an exciting choice for new and experienced riders alike.",
+        "quantity": 15,
+        "inStock": true
+    },
+    {
+        "name": "Harley-Davidson Street Bob",
+        "brand": "Harley-Davidson",
+        "model": "Harley-Davidson",
+        "image": "https://i.ibb.co/WNdM5hsb/3242.jpg",
+        "price": 14500,
+        "category": "Hybrid",
+        "description": "The Harley-Davidson Street Bob is a classic cruiser designed for those who love open-road adventures. Powered by a Milwaukee-Eight 114 engine, this bike delivers incredible torque and a smooth ride. The stripped-down design with blacked-out styling gives it a raw and rugged look. The Street Bob is equipped with high-performance suspension, ensuring a comfortable ride. Whether cruising on highways or through city streets, this bike embodies the true spirit of Harley-Davidson.",
+        "quantity": 4,
+        "inStock": true
+    }
+]
