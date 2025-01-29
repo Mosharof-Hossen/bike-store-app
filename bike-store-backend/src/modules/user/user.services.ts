@@ -27,6 +27,7 @@ const singleUser = async (payload: string) => {
     return result
 }
 
+
 const changePasswordIntoDB = async (email: string, payload: TChangePassword) => {
     const user = await UserModel.findOne({ email: email })
     const isCorrectOldPassword = await compare(payload.oldPassword, user?.password as string);

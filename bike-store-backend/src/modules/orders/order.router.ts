@@ -35,5 +35,10 @@ router.get(
     auth(USER_ROLE.admin),
     OrderController.findRevenue
 );
+router.post(
+    '/status-update/:id',
+    auth(USER_ROLE.admin),
+    OrderController.orderStatusChange
+);
 
 export const orderRouter = router;

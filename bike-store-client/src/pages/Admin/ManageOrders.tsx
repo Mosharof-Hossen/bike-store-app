@@ -13,10 +13,10 @@ const ManageOrders = () => {
     const handleVerifyPayment = async (id: string) => {
         console.log(id);
         const res = await verifyOrder(id);
-        if(res.data){
+        if (res.data) {
             toast.success("Payment Verification Done")
         }
-        
+
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>, _id: string) => {
@@ -41,8 +41,8 @@ const ManageOrders = () => {
                                         <th>Email</th>
                                         <th>Total Price</th>
                                         <th>Payment Verified</th>
-                                        <th>Status</th>
                                         <th>Verify?</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -53,7 +53,10 @@ const ManageOrders = () => {
                                             <th>{i + 1}</th>
                                             <td>{item.email}</td>
                                             <td>${item.totalPrice}</td>
-                                            <td>{item.verified ? "Yes" : "No"}</td>
+                                            <td className={`${item.verified ? "text-green-500" : "text-red-500"}`}>{item.verified ? "Yes" : "No"}</td>
+                                            <td>
+                                                <button onClick={() => handleVerifyPayment(item.transaction.id)} className={`btn ${item.verified ? "bg-green-300" : "bg-red-300"}`}>Verify</button>
+                                            </td>
                                             <td>
                                                 <button
                                                     className={`btn rounded-lg  text-center text-lg font-semibold 
@@ -66,9 +69,7 @@ const ManageOrders = () => {
                                                 >{item.status}</button>
                                             </td>
 
-                                            <td>
-                                                <button onClick={() => handleVerifyPayment(item.transaction.id)} className={`btn ${item.verified ? "bg-green-300" : "bg-red-300"}`}>Verify</button>
-                                            </td>
+
                                             <td>
                                                 <form>
                                                     <select defaultValue={item.status}
@@ -85,10 +86,10 @@ const ManageOrders = () => {
 
                                                     >
                                                         <option className="text-red-500" value="Pending">Pending</option>
-                                                        <option className="text-orange-500" value="Processing">Paid</option>
-                                                        <option className="text-blue-500" value="Ongoing">Shipped</option>
-                                                        <option className="text-green-500" value="Done">Completed</option>
-                                                        <option className="text-gray-500" value="Done">Cancelled</option>
+                                                        <option className="text-orange-500" value="Paid">Paid</option>
+                                                        <option className="text-blue-500" value="Shipped">Shipped</option>
+                                                        <option className="text-green-500" value="Completed">Completed</option>
+                                                        <option className="text-gray-500" value="Cancelled">Cancelled</option>
                                                     </select>
                                                 </form>
                                             </td>

@@ -79,9 +79,13 @@ const verifyPayment = async (order_id: string) => {
       }
     );
   }
-
   return verifiedPayment;
 };
+
+const updateStatusIntoDB = async (id: string, payload: { status: string }) => {
+  const res = await Order.findByIdAndUpdate(id, payload, { new: true });
+  return res
+}
 
 const getAllOrders = async () => {
   const res = await Order.find();
@@ -135,5 +139,6 @@ export const orderServices = {
   totalRevenue,
   verifyPayment,
   getAllOrders,
-  getAllOrderOfUser
+  getAllOrderOfUser,
+  updateStatusIntoDB
 };

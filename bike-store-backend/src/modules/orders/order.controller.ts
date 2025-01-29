@@ -71,11 +71,23 @@ const getAllOrdersOfUser = catchAsync(async (req: Request, res: Response) => {
     meta: null
   })
 })
+const orderStatusChange = catchAsync(async (req: Request, res: Response) => {
+  const result = await orderServices.updateStatusIntoDB(req.params.id, req.body);
+
+  sendResponse(res, {
+    data: result,
+    message: 'Status Updated',
+    statusCode: 200,
+    success: true,
+    meta: null
+  })
+})
 
 export const OrderController = {
   createOrder,
   findRevenue,
   verifyPayment,
   getAllOrders,
-  getAllOrdersOfUser
+  getAllOrdersOfUser,
+  orderStatusChange
 };
