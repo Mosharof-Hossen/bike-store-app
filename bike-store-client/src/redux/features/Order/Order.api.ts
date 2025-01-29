@@ -1,4 +1,6 @@
 
+import { TResponse } from "../../../types/global.type";
+import { TUserOwnOrder } from "../../../types/order.type";
 import { baseApi } from "../../api/baseApi";
 
 const orderApi = baseApi.injectEndpoints({
@@ -11,6 +13,14 @@ const orderApi = baseApi.injectEndpoints({
                 }
             },
             providesTags: ["ownOrders"]
+        }),
+
+        getAllOrders: builder.query<TResponse<TUserOwnOrder[]>, void>({
+            query: () => {
+                return {
+                    url: `/order`,
+                }
+            },
         }),
 
         createOrder: builder.mutation({
@@ -38,5 +48,6 @@ const orderApi = baseApi.injectEndpoints({
 export const {
     useCreateOrderMutation,
     useVerifyOrderQuery,
-    useGetUserOwnOrdersQuery
+    useGetUserOwnOrdersQuery,
+    useGetAllOrdersQuery
 } = orderApi;
