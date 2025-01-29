@@ -1,4 +1,3 @@
-import React from 'react';
 import { useGetAllProductsQuery } from '../../redux/features/products/product.api';
 import CustomSpinner from '../Spinner/CustomSpinner';
 import ProductCart from './ProductCart';
@@ -8,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 
 const Products = () => {
-    const { data, isFetching } = useGetAllProductsQuery({inStock:true}) as {
+    const { data, isFetching } = useGetAllProductsQuery({inStock:true,limit:8}) as {
         data?: {
             data?: TProduct[],
             meta?: TMeta;
@@ -18,7 +17,7 @@ const Products = () => {
     console.log(data, isFetching);
 
     return (
-        <div className='space-y-10'>
+        <div className='space-y-10 mt-10'>
             <div className='text-center space-y-4 px-10'>
                 <h1 className='text-[#22292f] text-4xl font-bold'>Top Picks for You</h1>
                 <p className='text-gray-500'>Discover high-quality bikes at unbeatable prices, just for you!</p>

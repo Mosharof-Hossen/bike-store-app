@@ -1,43 +1,23 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaArrowAltCircleRight, } from "react-icons/fa";
 import banner1 from "../../assets/banner/banner1.jpg"
 import banner2 from "../../assets/banner/banner2.jpg"
 import banner3 from "../../assets/banner/banner3.jpg"
 import banner4 from "../../assets/banner/banner4.jpg"
-import banner5 from "../../assets/banner/banner5.jpg"
-
-import 'swiper/css';
-import 'swiper/css/pagination';
-import "./slideStyle.css"
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Link } from "react-router-dom";
 
 const Banner = () => {
 
     return (
         <>
-            <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
-                autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                }}
-                pagination={{
-                    clickable: true,
-                }}
-                navigation={true}
-                modules={[Autoplay, Pagination, Navigation]}
-                className="mySwiper"
-            >
-                <SwiperSlide >
+           
+            <div className="carousel w-full">
+                <div id="slide1" className="carousel-item relative w-full">
                     <div
-                        className="hero h-[550px] bg-center bg-no-repeat bg-cover"
+                        className="hero h-[550px]"
                         style={{
                             backgroundImage: `url(${banner1})`,
-                        }}
-                    >
-                        <div className="hero-overlay bg-opacity-60"></div>
+                        }}>
+                        <div className="hero-overlay"></div>
                         <div className="hero-content text-neutral-content text-center">
                             <div className="md:max-w-lg max-w-md">
                                 <p className='text-sm mb-2'>Affordable & Reliable</p>
@@ -51,16 +31,21 @@ const Banner = () => {
                             </div>
                         </div>
                     </div>
-                </SwiperSlide>
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#slide4" className="btn btn-circle">❮</a>
+                        <a href="#slide2" className="btn btn-circle">❯</a>
+                    </div>
+                </div>
 
-                <SwiperSlide >
+
+
+                <div id="slide2" className="carousel-item relative w-full">
                     <div
-                        className="hero h-[550px] bg-center bg-no-repeat bg-cover"
+                        className="hero h-[550px]"
                         style={{
                             backgroundImage: `url(${banner2})`,
-                        }}
-                    >
-                        <div className="hero-overlay bg-opacity-60"></div>
+                        }}>
+                        <div className="hero-overlay"></div>
                         <div className="hero-content text-neutral-content text-center">
                             <div className="md:max-w-lg max-w-md">
                                 <p className='text-sm mb-2'>Exclusive & Budget-Friendly</p>
@@ -74,16 +59,18 @@ const Banner = () => {
                             </div>
                         </div>
                     </div>
-                </SwiperSlide>
-
-                <SwiperSlide >
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#slide1" className="btn btn-circle">❮</a>
+                        <a href="#slide3" className="btn btn-circle">❯</a>
+                    </div>
+                </div>
+                <div id="slide3" className="carousel-item relative w-full">
                     <div
-                        className="hero h-[550px] bg-center bg-no-repeat bg-cover"
+                        className="hero h-[550px]"
                         style={{
                             backgroundImage: `url(${banner3})`,
-                        }}
-                    >
-                        <div className="hero-overlay bg-opacity-60"></div>
+                        }}>
+                        <div className="hero-overlay"></div>
                         <div className="hero-content text-neutral-content text-center">
                             <div className="md:max-w-lg max-w-md">
                                 <p className='text-sm mb-2'>Stylish & High-Performance</p>
@@ -97,41 +84,20 @@ const Banner = () => {
                             </div>
                         </div>
                     </div>
-                </SwiperSlide>
-
-                <SwiperSlide >
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#slide2" className="btn btn-circle">❮</a>
+                        <a href="#slide4" className="btn btn-circle">❯</a>
+                    </div>
+                </div>
+                <div id="slide4" className="carousel-item relative w-full">
                     <div
-                        className="hero h-[550px] bg-center bg-no-repeat bg-cover"
+                        className="hero h-[550px]"
                         style={{
                             backgroundImage: `url(${banner4})`,
-                        }}
-                    >
-                        <div className="hero-overlay bg-opacity-60"></div>
+                        }}>
+                        <div className="hero-overlay"></div>
                         <div className="hero-content text-neutral-content text-center">
-                            <div className="md:max-w-lg max-w-md">
-                                <p className='text-sm mb-2'>Simple & Hassle-Free</p>
-                                <h1 className="mb-5 text-5xl font-bold"> Buy Your Bike Easily</h1>
-                                <p className="mb-5">
-                                    Enjoy a seamless bike-buying experience with trusted sellers and secure transactions. Ride stress-free!
-                                </p>
-                                <div className="mt-6">
-                                    <Link to={"/shop"}><button className="btn bg-[#22292f] hover:bg-black text-white border-black text-xl">See More <FaArrowAltCircleRight /></button></Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-
-                <SwiperSlide >
-                    <div
-                        className="hero h-[550px] bg-center bg-no-repeat bg-cover"
-                        style={{
-                            backgroundImage: `url(${banner5})`,
-                        }}
-                    >
-                        <div className="hero-overlay bg-opacity-60"></div>
-                        <div className="hero-content text-neutral-content text-center">
-                            <div className="md:max-w-lg max-w-md">
+                        <div className="md:max-w-lg max-w-md">
                                 <p className='text-sm mb-2'>Verified & Trusted</p>
                                 <h1 className="mb-5 text-5xl font-bold"> Quality Bikes, Guaranteed</h1>
                                 <p className="mb-5">
@@ -143,10 +109,12 @@ const Banner = () => {
                             </div>
                         </div>
                     </div>
-                </SwiperSlide>
-
-
-            </Swiper>
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#slide3" className="btn btn-circle">❮</a>
+                        <a href="#slide1" className="btn btn-circle">❯</a>
+                    </div>
+                </div>
+            </div>
         </>
     );
 };

@@ -1,4 +1,3 @@
-import React from 'react';
 import brand1 from "../../assets/brands/brand1.png"
 import brand2 from "../../assets/brands/brand2.png"
 import brand3 from "../../assets/brands/brand3.png"
@@ -9,7 +8,7 @@ import brand7 from "../../assets/brands/brand7.jpg"
 import brand8 from "../../assets/brands/brand8.png"
 const BrandSection = () => {
     return (
-        <section className="dark:bg-gray-100 dark:text-gray-800">
+        <section className="dark:bg-gray-100 dark:text-gray-800 mt-10">
             <div className="container p-6 mx-auto space-y-6 text-center lg:p-8 lg:space-y-8">
                 <h2 className="text-3xl font-bold">Fully Connected with</h2>
                 <div className="flex flex-wrap justify-center lg:justify-between">

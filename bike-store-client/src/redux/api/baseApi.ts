@@ -2,7 +2,7 @@ import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError 
 import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:4000/api',
+    baseUrl: 'https://bike-store-backend-flax.vercel.app/api',
     credentials: "include",
     prepareHeaders: (header, { getState }) => {
         const token = (getState() as RootState).auth.token;

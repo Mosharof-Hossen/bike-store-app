@@ -1,6 +1,6 @@
 import { TErrorSource, TReturnErrorResponse } from "../interface/error";
 
-const handleDuplicateError = (err): TReturnErrorResponse => {
+const handleDuplicateError = (err:any): TReturnErrorResponse => {
   const errorSources: TErrorSource = [
     {
       path: '',

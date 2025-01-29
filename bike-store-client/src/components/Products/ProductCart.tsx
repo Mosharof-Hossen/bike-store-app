@@ -33,7 +33,8 @@ const ProductCart = ({ item }: { item: TProduct }) => {
                 <div>
                     <Link to={`/product-details/${item._id}`}> <h2 className="card-title cursor-pointer hover:underline hover:text-blue-600 text-[#22292f]">{item.name}</h2></Link>
                     <p className='text-sm'>Brand: {item.brand}</p>
-                    <p className='text-sm'>Model: {item.category}</p>
+                    <p className='text-sm'>Model: {item.model}</p>
+                    <p className='text-sm'>Category: {item.category}</p>
                 </div>
                 <div className="card-actions flex flex-col mt-3">
                     <h3 className='text-2xl font-semibold'>${item.price}</h3>

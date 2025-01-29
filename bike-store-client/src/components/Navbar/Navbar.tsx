@@ -21,6 +21,7 @@ const Navbar = () => {
         <NavLink to={"/"} className={"text-[#22292f]  lg:px-2 px-2 lg:mx-1 w-full md:w-fit  py-1 rounded  text-lg font-semibold "}><li>Home</li></NavLink>
         <NavLink to={"/shop"} className={"text-[#22292f]  lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>Shop</li></NavLink>
         <NavLink to={"/contact"} className={"text-[#22292f] lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>Contact</li></NavLink>
+        <NavLink to={"/about"} className={"text-[#22292f] lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>About</li></NavLink>
         {
             user?.role === "admin" &&
             <NavLink to={"/admin/dashboard"} className={"text-[#22292f] lg:px-2 px-2 lg:mx-1 w-full md:w-fit py-1 rounded  text-lg font-semibold "}><li>Dashboard</li></NavLink>

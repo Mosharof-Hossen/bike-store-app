@@ -18,12 +18,7 @@ const Login = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
-        defaultValues: {
-            email: "user@user.com",
-            password: "123456"
-        }
-    })
+    } = useForm()
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         const res = await login(data) as TResponse<TUserLoginResponse>;
         let user;

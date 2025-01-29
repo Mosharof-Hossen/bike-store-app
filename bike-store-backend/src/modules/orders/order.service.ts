@@ -7,11 +7,29 @@ import { orderUtils } from './order.utils';
 const createOrder = async (user: TUser, payload: TOrderItem, client_ip: string) => {
   const items = payload.items
 
+  // items.forEach(async (item) => {
+  //   await Bike.updateOne(
+  //     { _id: item.product },
+  //     { $inc: { quantity: -item.quantity } }
+  //   );
+  // });
+
   items.forEach(async (item) => {
+    const productId = item.product;
+
     await Bike.updateOne(
-      { _id: item.product },
+      { _id: productId },
       { $inc: { quantity: -item.quantity } }
     );
+
+    const updatedProduct = await Bike.findById(productId);
+
+    if (updatedProduct?.quantity === 0) {
+      await Bike.updateOne(
+        { _id: productId },
+        { $set: { inStock: false } }
+      );
+    }
   });
 
 

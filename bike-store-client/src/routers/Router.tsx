@@ -18,6 +18,7 @@ import UpdatePassword from "../pages/User/UpdatePassword";
 import PrivateRouter from "./PrivateRouter";
 import Cart from "../components/Cart/Cart";
 import ProductDetails from "../components/Products/ProductDetails";
+import About from "../components/About/About";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login></Login>
+            },
+            {
+                path: "/about",
+                element: <About></About>
             },
             {
                 path: "/user/cart",

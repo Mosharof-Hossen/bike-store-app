@@ -76,6 +76,7 @@ const Cart = () => {
                             <th></th>
                             <th>Image</th>
                             <th>Product Name</th>
+                            <th>Stock</th>
                             <th>Quantity</th>
                             <th>Unit Price</th>
                             <th>Total</th>
@@ -96,6 +97,7 @@ const Cart = () => {
                                     </div>
                                 </th>
                                 <td>{item.name}</td>
+                                <td>{item.InStock}</td>
                                 <td>
                                     <div className="flex items-center gap-1  p-2 rounded-lg w-32 bg-white ">
                                         <button

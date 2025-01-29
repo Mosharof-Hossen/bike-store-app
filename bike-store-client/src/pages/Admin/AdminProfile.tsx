@@ -56,7 +56,7 @@ const AdminProfile = () => {
 
                                 <div className="bg-blue-300 rounded p-5 space-y-2">
                                     <h2 className="text-xl text-gray-600 text-center font-semibold">Total Order</h2>
-                                    <h1 className="text-3xl text-center font-bold text-gray-900">{allOrders?.data?.length}</h1>
+                                <h1 className="text-3xl text-center font-bold text-gray-900">{allOrders?.data?.length}</h1>
                                 </div>
 
 
